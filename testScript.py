@@ -27,6 +27,11 @@ q_singularity = np.array([0.0, pi/4, 3.13])
 
 w_initial = [1.0, 2.0, 3.0, 0.0, 0.0, 0.0] #(Fx, Fy, Fz, Tx, Ty, Tz)
 
+# Define the joint angles to test
+qs1 = [-1.91970470e-15, -8.35883143e-01, 2.80232546e+00]
+qs2 = [-0.24866892, 0.22598268, -0.19647569]
+qs3 = [1.70275090e-17, -1.71791355e-01, -1.95756090e-01]
+
 robot = rtb.DHRobot(
     [
         rtb.RevoluteMDH(alpha = 0.0     ,a = 0.0      ,d = d_1    ,offset = pi ),
@@ -65,29 +70,41 @@ checkEndEffectorJacobianHW3(q_initial)
 #==============================================================================================================#
 #===========================================<ตรวจคำตอบข้อ 2>====================================================#
 #code here
-def checkSingularityFunction(q):
+# ฟังก์ชันสำหรับเช็ค Singularities สำหรับ qs1, qs2, qs3 พร้อมแสดงค่า determinant
+def checkSingularity():
     print("-------------------check Singularity ----------------------")
-    # Manual singularity check using function from FRA333_HW3_25_55
-    singularity_manual = checkSingularityHW3(q)
 
-    # Robotic toolbox singularity check
-    J_toolbox = robot.jacobe(q)
-    J_linear_toolbox = J_toolbox[:3, :]
-    manipularity = abs(np.linalg.det(J_linear_toolbox))
-    epsilon = 0.001
-    singularity_toolbox = manipularity < epsilon
+    # ฟังก์ชันเพื่อแสดงผล Singularities
+    def printSingularityResult(q, name):
+        # คำนวณ Jacobian ของหุ่นยนต์
+        J = endEffectorJacobianHW3(q)
+        
+        # ตัดเฉพาะส่วนที่เป็น Jacobian เชิงเส้น (3x3)
+        J_linear = J[:3, :]
 
-    # Compare singularity results
-    print("Singularity from manual calculation (FRA333_HW3_25_55):", singularity_manual)
-    print("Singularity from toolbox (roboticstoolbox):", singularity_toolbox)
+        # คำนวณ determinant ของ Jacobian เชิงเส้น
+        manipularity = abs(np.linalg.det(J_linear))
+        epsilon = 0.001
 
-    if singularity_manual == singularity_toolbox:
-        print("Singularity check matches!")
-    else:
-        print("Singularity check differs!")
+        # ตรวจสอบค่า singularity
+        singularity = manipularity < epsilon
+        
+        # แสดงผลลัพธ์
+        print(f"Results for {name}:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear}")
+        print(f"Determinant: {manipularity}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity else 'No Singularity'}")
+        print("\n")
 
-# Call the function to check singularity
-checkSingularityFunction(q_singularity)
+    # Test qs1
+    printSingularityResult(qs1, "qs1")
+    # Test qs2
+    printSingularityResult(qs2, "qs2")
+    # Test qs3
+    printSingularityResult(qs3, "qs3")
+
+# เรียกฟังก์ชันเพื่อเช็ค Singularities
+checkSingularity()
 
 
 #==============================================================================================================#

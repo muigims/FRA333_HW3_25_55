@@ -23,6 +23,8 @@ q = np.array([0.0, 0.0, 0.0])
 q_singularity = np.array([0.0,0.0,0.0])
 w_initial = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  #(Fx, Fy, Fz, Tx, Ty, Tz)
 
+
+
 robot = rtb.DHRobot(
     [
         rtb.RevoluteMDH(alpha = 0.0     ,a = 0.0      ,d = d_1    ,offset = pi ),
