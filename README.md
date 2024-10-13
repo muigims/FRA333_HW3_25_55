@@ -43,7 +43,7 @@ python -m venv env
 env\Scripts\activate
   ```
 # **ทฤษฎีที่เกี่ยวข้อง**
-1. Kinematics (จลนศาสตร์ของหุ่นยนต์)
+# 1. Kinematics (จลนศาสตร์ของหุ่นยนต์)
 Kinematics เป็นการศึกษาเกี่ยวกับการเคลื่อนที่ของหุ่นยนต์โดยไม่สนใจแรงที่กระทำ แต่เน้นที่การเคลื่อนที่ของข้อต่อและตำแหน่งของ end-effector (ส่วนปลายของหุ่นยนต์) เราสามารถแบ่งออกเป็น 2 ส่วนหลัก ๆ:
 1.1 Forward Kinematics (FK) – จลนศาสตร์เดินหน้า
 Forward Kinematics ใช้สำหรับหาตำแหน่งและการหมุนของ end-effector เมื่อทราบมุมของข้อต่อแต่ละข้อ การคำนวณนี้จำเป็นสำหรับการคาดการณ์ตำแหน่งที่หุ่นยนต์จะเคลื่อนไปเมื่อปรับมุมของข้อต่อ
@@ -56,7 +56,29 @@ $T_{0,n} = T_{0,1} \cdot T_{1,2} \cdot \dots \cdot T_{n-1,n}$
 - `T(i, j)` คือเมทริกซ์การแปลง (Transformation Matrix) ระหว่างข้อต่อ \(i\) และ \(j\).
 ---
 
-## 2. Jacobian Matrix (เมทริกซ์จาโคเบียน)
+impliment in code 
+  ```
+def checkEndEffectorJacobianHW3(q):
+    print("-------------------check Jacobian ----------------------")
+    # Manual calculation using function from FRA333_HW3_25_55
+    J_manual = endEffectorJacobianHW3(q)
+
+    # Robotic toolbox calculation
+    J_toolbox = robot.jacobe(q)
+
+    # Compare Jacobians
+    print("Jacobian from manual calculation (FRA333_HW3_25_55):\n", J_manual)
+    print("Jacobian from toolbox (roboticstoolbox):\n", J_toolbox)
+
+    # Difference between the two
+    J_diff = J_toolbox - J_manual
+    print("Difference in Jacobian:\n", J_diff)
+  ```
+# Call the function to check the Jacobian
+checkEndEffectorJacobianHW3(q_initial)
+
+
+# 2. Jacobian Matrix (เมทริกซ์จาโคเบียน)
 
 Jacobian เป็นเมทริกซ์ที่แสดงความสัมพันธ์เชิงเส้นระหว่างความเร็วของข้อต่อและความเร็วของ end-effector 
 ในเชิงลำดับชั้น โดยทั่วไปเมทริกซ์นี้มีขนาด `6 x n` (สำหรับหุ่นยนต์ที่มี `n` ข้อต่อ) ซึ่งแยกเป็นสองส่วน:
@@ -82,7 +104,7 @@ $$
 - คำนวณแรงบิดที่ข้อต่อเมื่อมีแรงกระทำกับ end-effector
 
 
-## 3. Singularity (ภาวะเอกฐานของหุ่นยนต์)
+# 3. Singularity (ภาวะเอกฐานของหุ่นยนต์)
 
 ภาวะ Singularity เกิดขึ้นเมื่อหุ่นยนต์สูญเสียอิสระในการเคลื่อนที่ (Degrees of Freedom) ในบางทิศทาง ซึ่งอาจทำให้หุ่นยนต์ไม่สามารถเคลื่อนที่ไปในทิศทางที่ต้องการได้หรือเคลื่อนได้อย่างผิดพลาด
 
