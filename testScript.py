@@ -11,8 +11,8 @@ from FRA333_HW3_25_55 import endEffectorJacobianHW3,checkSingularityHW3,computeE
 
 '''
 ชื่อ_รหัส(ex: ธนวัฒน์_6541)                                                        
-1.
-2.
+1.ทัศน์พล สินเมือง 65340500025
+2.สิริมณี มณ๊เวศย์วโรดม 65340500055
 3.
 '''
 
