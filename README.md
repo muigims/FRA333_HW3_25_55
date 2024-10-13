@@ -29,7 +29,7 @@
 6.ตรวจสอบว่าไฟล์ HW3_utils.py ,  FRA333_HW3_25_55.py  , testScript.py อยู่ในไดเรกทอรีเดียวกัน ก่อนรันโปรแกรม
 ---
 
-## หมายเหตุ หากไม่สามารถลง robotictoolbox ใน window ได้ ให้ทำการลงบน ระบบปฏิบัติการ linux แทน
+**หมายเหตุ หากไม่สามารถลง robotictoolbox ใน window ได้ ให้ทำการลงบน ระบบปฏิบัติการ linux แทน**
 
 **clone github**
 1.Clone the repository หรือ ทำการ Download zip บน github แล้วแตกไฟล์
@@ -37,6 +37,7 @@
 git clone https://github.com/muigims/FRA333_HW3_25_55.git
   ```
 2.เปิดโปรแกรม Visual Studio Code แล้วทำการ open folder FRA333_HW3_25_55 (ที่อยู่ไฟล์ตามตำแหน่งที่เลือกมา)
+3.ทำการรันไฟล์ FRA333_HW3_25_55.py และ testScript.py ตามลำดับ 
 ---
 # **ทฤษฎีที่เกี่ยวข้อง**
 **1. Kinematics (จลนศาสตร์ของหุ่นยนต์)**
