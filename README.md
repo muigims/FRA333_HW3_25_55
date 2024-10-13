@@ -313,8 +313,11 @@ $$
 -6.1232 \times 10^{-17} & 6.1232 \times 10^{-17} & 6.1232 \times 10^{-17}
 \end{bmatrix}
 \]
+$$
 
-### Jacobian from toolbox (roboticstoolbox):
+#### Jacobian from toolbox (roboticstoolbox):
+
+$$
 \[
 \begin{bmatrix}
 8.9943 \times 10^{-1} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
@@ -325,8 +328,11 @@ $$
 0.0000 \times 10^{0} & 0.0000 \times 10^{0} & 1.0000 \times 10^{0}
 \end{bmatrix}
 \]
+$$
 
-### Difference in Jacobian:
+#### Difference in Jacobian:
+
+$$
 \[
 \begin{bmatrix}
 0.0000 \times 10^{0} & 4.9379 \times 10^{-17} & 2.3356 \times 10^{-17} \\
