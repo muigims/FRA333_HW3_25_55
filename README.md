@@ -222,7 +222,7 @@ robot = rtb.DHRobot(
   - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
 
 - **Output:**
-  - `J: list[float]` – Jacobian Matrix ขนาด \(6 \times 3\) ซึ่งแสดงความสัมพันธ์ระหว่างความเร็วของข้อต่อและความเร็วของ end-effector
+  - `J: list[float]` – Jacobian Matrix ขนาด \$(6 \times 3\)$ ซึ่งแสดงความสัมพันธ์ระหว่างความเร็วของข้อต่อและความเร็วของ end-effector
 
 ```
 def endEffectorJacobianHW3(q:list[float])->list[float]:
