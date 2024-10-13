@@ -272,7 +272,6 @@ J =
 \]
 $$
 
-![image](https://github.com/user-attachments/assets/01bd340f-0cbe-43b2-af21-4df5c8be4bf8)
 
 ### **ตรวจคำตอบ**
  
@@ -299,8 +298,46 @@ def checkEndEffectorJacobianHW3(q):
 checkEndEffectorJacobianHW3(q_initial)
 ```
 จะได้ผลลัพธ์
+#### -----------------check Jacobian -------------------
 
-![image](https://github.com/user-attachments/assets/bd633e4a-9d89-4365-9ec3-6a96acc8ffa7)
+#### Jacobian from manual calculation (FRA333_HW3_25_55):
+
+$$
+\[
+\begin{bmatrix}
+8.9943 \times 10^{-1} & -4.9379 \times 10^{-17} & -2.3356 \times 10^{-17} \\
+-1.1682 \times 10^{-16} & -8.9943 \times 10^{-1} & -4.7443 \times 10^{-1} \\
+-1.0900 \times 10^{-1} & -9.3000 \times 10^{-2} & -9.3000 \times 10^{-2} \\
+1.2246 \times 10^{-16} & 1.0000 \times 10^{0} & 1.0000 \times 10^{0} \\
+1.0000 \times 10^{0} & -6.1232 \times 10^{-17} & -6.1232 \times 10^{-17} \\
+-6.1232 \times 10^{-17} & 6.1232 \times 10^{-17} & 6.1232 \times 10^{-17}
+\end{bmatrix}
+\]
+
+### Jacobian from toolbox (roboticstoolbox):
+\[
+\begin{bmatrix}
+8.9943 \times 10^{-1} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+-5.5074 \times 10^{-35} & -8.9943 \times 10^{-1} & -4.7443 \times 10^{-1} \\
+-1.0900 \times 10^{-1} & -9.3000 \times 10^{-2} & -9.3000 \times 10^{-2} \\
+1.0000 \times 10^{0} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+1.0000 \times 10^{0} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+0.0000 \times 10^{0} & 0.0000 \times 10^{0} & 1.0000 \times 10^{0}
+\end{bmatrix}
+\]
+
+### Difference in Jacobian:
+\[
+\begin{bmatrix}
+0.0000 \times 10^{0} & 4.9379 \times 10^{-17} & 2.3356 \times 10^{-17} \\
+6.1748 \times 10^{-17} & 0.0000 \times 10^{0} & 5.5511 \times 10^{-17} \\
+5.5511 \times 10^{-17} & 5.5511 \times 10^{-17} & 2.7756 \times 10^{-17} \\
+0.0000 \times 10^{0} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+-6.1232 \times 10^{-17} & 6.1232 \times 10^{-17} & 0.0000 \times 10^{0} \\
+6.1232 \times 10^{-17} & -6.1232 \times 10^{-17} & -6.1232 \times 10^{-17}
+\end{bmatrix}
+\]
+$$
 
 เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลจต่างมีค่าเท่ากับ 0 
 
