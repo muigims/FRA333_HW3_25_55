@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/78129f28-1773-40af-bb22-10b712141ff0)![image](https://github.com/user-attachments/assets/f706b469-8f9c-4fee-be69-23f2e76846cd)![image](https://github.com/user-attachments/assets/2bd7427d-7551-4eb1-9215-7a563969f9e6)# FRA333_HW3_25_55
+# FRA333_HW3_25_55
  โปรเจกต์นี้เกี่ยวข้องกับการคำนวณ Jacobian, การตรวจสอบ Singularity และการคำนวณแรงบิด (Effort) ของหุ่นยนต์ 3DOF โดยใช้ Python และไลบรารี Robotics Toolbox รวมถึงการทดสอบผลลัพธ์ผ่านการคำนวณเชิงลึก
 
  ## **การติดตั้ง Environment**
@@ -196,6 +196,7 @@ print("-----------------answer 1 -------------------")
 print("Jacobian from manual calculation:")
 print(J)
 ```
+
 ![image](https://github.com/user-attachments/assets/01bd340f-0cbe-43b2-af21-4df5c8be4bf8)
 
  # **ตรวจคำตอบ**
@@ -221,7 +222,9 @@ def checkEndEffectorJacobianHW3(q):
 checkEndEffectorJacobianHW3(q_initial)
 ```
 จะได้ผลลัพธ์
+
 ![image](https://github.com/user-attachments/assets/bd633e4a-9d89-4365-9ec3-6a96acc8ffa7)
+
 เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลจต่างมีค่าเท่ากับ 0 
 
 ข้อที่ 2 การหา Singularity
@@ -249,6 +252,7 @@ def checkSingularityHW3(q: list[float]) -> bool:
 print("-----------------answer 2 -------------------")
 print("Singularity :",checkSingularityHW3(q))
 ```
+
 ![image](https://github.com/user-attachments/assets/61a514f3-9f5a-4d97-8145-e8b1676b2835)
 
  # **ตรวจคำตอบ**
@@ -299,6 +303,7 @@ def checkSingularity():
 checkSingularity()
 ```
 จะได้ผลลัพธ์
+
 ![image](https://github.com/user-attachments/assets/135f77db-41d2-48c9-8285-34534f4391f4)
 
 ข้อที่ 3 Computed Effort
@@ -320,6 +325,7 @@ print("-----------------answer 3 -------------------")
 print("Computed Effort (tau):", result)
 ```
 จะได้ผลลัพธ์
+
 ![image](https://github.com/user-attachments/assets/492c8c2f-e7e5-4311-a908-3564c27eed64)
 
  # **ตรวจคำตอบ**
@@ -346,4 +352,5 @@ def checkComputeEffortHW3(q, w):
 checkComputeEffortHW3(q_initial, w_initial)
 ```
 จะได้ผลลัพธ์
+
 ![image](https://github.com/user-attachments/assets/807b44d7-bca2-4465-81fe-0de1abac7a52)
