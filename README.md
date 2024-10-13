@@ -28,6 +28,9 @@
   ```
 6.ตรวจสอบว่าไฟล์ HW3_utils.py ,  FRA333_HW3_25_55.py  , testScript.py อยู่ในไดเรกทอรีเดียวกัน ก่อนรันโปรแกรม
 ---
+
+## หมายเหตุ หากไม่สามารถลง robotictoolbox ใน window ได้ ให้ทำการลงบน ระบบปฏิบัติการ linux แทน
+
 **clone github**
 1.Clone the repository
  ```
