@@ -216,7 +216,13 @@ robot = rtb.DHRobot(
 
 
 ## ข้อที่ 1 การคำนวณหา Jacobian
-จากสูตรด้านบน ทำให้เราได้ jaconbian matrix ที่เทีนยบกับ fram 0 จึงต้องทำการเปลี่ยน fram เทียบ fraam e ซึ่งทำได้โดยการนำ 'z_i' มาคูณกับ rotation matrix frame 0 เทียบกับ e '(R_e)' 
+จากสูตรด้านบน ทำให้เราได้ jaconbian matrix ที่เทีนยบกับ fram 0 จึงต้องทำการเปลี่ยน fram เทียบ fraam e ซึ่งทำได้โดยการนำ `z_i` มาคูณกับ rotation matrix frame 0 เทียบกับ e `(R_e)` 
+
+- **Input:**
+  - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
+
+- **Output:**
+  - `J: list[float]` – Jacobian Matrix ขนาด \(6 \times 3\) ซึ่งแสดงความสัมพันธ์ระหว่างความเร็วของข้อต่อและความเร็วของ end-effector
 
 ```
 def endEffectorJacobianHW3(q:list[float])->list[float]:
