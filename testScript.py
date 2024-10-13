@@ -78,37 +78,51 @@ def checkSingularity():
 
     # ฟังก์ชันเพื่อแสดงผล Singularities
     def printSingularityResult(q, name):
-        # คำนวณ Jacobian ของหุ่นยนต์
-        J = endEffectorJacobianHW3(q)
-        
-        # ตัดเฉพาะส่วนที่เป็น Jacobian เชิงเส้น (3x3)
-        J_linear = J[:3, :]
+        # คำนวณ Jacobian ของหุ่นยนต์จากฟังก์ชันที่พัฒนาเอง
+        J_manual = endEffectorJacobianHW3(q)
+        J_linear_manual = J_manual[:3, :]  # ตัดส่วน Linear (3x3)
 
-        # คำนวณ determinant ของ Jacobian เชิงเส้น
-        manipularity = abs(np.linalg.det(J_linear))
+        # คำนวณ Jacobian จาก Robotic Toolbox
+        J_toolbox = robot.jacobe(q)
+        J_linear_toolbox = J_toolbox[:3, :]  # ตัดส่วน Linear (3x3)
+
+        # คำนวณ determinant ของทั้งสอง Jacobian
+        manipularity_manual = abs(np.linalg.det(J_linear_manual))
+        manipularity_toolbox = abs(np.linalg.det(J_linear_toolbox))
+
+        # คำนวณความแตกต่างระหว่างผลลัพธ์จากทั้งสอง
+        J_diff = J_linear_toolbox - J_linear_manual
+
+        # ตรวจสอบว่าอยู่ในสถานะ Singularity หรือไม่
         epsilon = 0.001
+        singularity_manual = manipularity_manual < epsilon
+        singularity_toolbox = manipularity_toolbox < epsilon
 
-        # ตรวจสอบค่า singularity
-        singularity = manipularity < epsilon
-        
         # แสดงผลลัพธ์
         print(f"Results for {name}:")
-        print(f"Jacobian Linear Part (3x3):\n{J_linear}")
-        print(f"Determinant: {manipularity}")
-        print(f"Singularity Status: {'Singularity Detected' if singularity else 'No Singularity'}")
+        print("\nManual Calculation:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear_manual}")
+        print(f"Determinant: {manipularity_manual}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity_manual else 'No Singularity'}")
+
+        print("\nRobotic Toolbox Calculation:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear_toolbox}")
+        print(f"Determinant: {manipularity_toolbox}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity_toolbox else 'No Singularity'}")
+
+        print("\nDifference between Toolbox and Manual:")
+        print(J_diff)
         print("\n")
 
-    # Test qs1
+    # ทดสอบ Singularities สำหรับชุดมุมต่าง ๆ
     printSingularityResult(qs1, "qs1")
-    # Test qs2
     printSingularityResult(qs2, "qs2")
-    # Test qs3
     printSingularityResult(qs3, "qs3")
-    # Test qs4
     printSingularityResult(qs4, "qs4")
 
-# เรียกฟังก์ชันเพื่อเช็ค Singularities
+# เรียกฟังก์ชันเพื่อตรวจสอบ Singularities
 checkSingularity()
+
 
 
 #==============================================================================================================#

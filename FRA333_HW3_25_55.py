@@ -22,7 +22,10 @@ d_6 = 0.082
 q = np.array([0.0, 0.0, 0.0])
 q_singularity = np.array([0.0,0.0,0.0])
 w_initial = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  #(Fx, Fy, Fz, Tx, Ty, Tz)
-
+qs1 = [-1.91970470e-15, -8.35883143e-01, 2.80232546e+00]
+qs2 = [-0.24866892, 0.22598268, -0.19647569]
+qs3 = [1.70275090e-17, -1.71791355e-01, -1.95756090e-01]
+qs4 = [0.0, 0.0, 0.0]
 
 
 robot = rtb.DHRobot(
@@ -62,13 +65,13 @@ def endEffectorJacobianHW3(q:list[float])->list[float]:
         # print("Jacobian Matrix:")
     return J
 J = endEffectorJacobianHW3(q)
-print("-----------------answer 1 -------------------")
+# print("-----------------answer 1 -------------------")
 print("Jacobian from manual calculation:")
 print(J)
-print("Jacobian Matrix from toolbox:")
-print(robot.jacobe(q))
-print("Difference between library and custom Jacobian:")
-print((robot.jacobe(q))-J)
+# print("Jacobian Matrix from toolbox:")
+# print(robot.jacobe(q))
+# print("Difference between library and custom Jacobian:")
+# print((robot.jacobe(q))-J)
 
 
 #pass
@@ -92,7 +95,12 @@ def checkSingularityHW3(q: list[float]) -> bool:
   # หุ่นยนต์อยู่ในสถานะ Singularity
     return singularity
 print("-----------------answer 2 -------------------")
-print("Singularity :",checkSingularityHW3(q))
+print("Singularity1 :",checkSingularityHW3(qs1))
+print("Singularity2 :",checkSingularityHW3(qs2))
+print("Singularity3 :",checkSingularityHW3(qs3))
+print("Singularity4 :",checkSingularityHW3(qs4))
+
+
 #==============================================================================================================#
 #=============================================<คำตอบข้อ 3>======================================================#
 #code here
