@@ -443,10 +443,12 @@ checkSingularity()
 ```
 ### **จะได้ผลลัพธ์**
 
-## -------------------check Singularity ----------------------
+#### -------------------check Singularity ----------------------
 
-### Results for qs1:
-**Jacobian Linear Part (3x3):**
+#### Results for qs1:
+#### Jacobian Linear Part (3x3):
+
+$$
 \[
 \begin{bmatrix}
   1.63092362e-02 & -7.47610646e-18 & -2.33559107e-17 \\
@@ -454,13 +456,14 @@ checkSingularity()
   4.20090740e-02 &  4.84383615e-02 & -9.30000031e-02
 \end{bmatrix}
 \]
-**Determinant:** 0.00048651388752052766  
-**Singularity Status:** Singularity Detected
+$$
 
----
+#### Determinant: 0.00048651388752052766  
+#### Singularity Status: Singularity Detected
 
-### Results for qs2:
-**Jacobian Linear Part (3x3):**
+
+#### Results for qs2:
+#### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -472,13 +475,12 @@ $$
 \]
 $$
 
-**Determinant:** 0.0005287293674209878  
-**Singularity Status:** Singularity Detected
+#### Determinant: 0.0005287293674209878  
+#### Singularity Status: Singularity Detected
 
----
 
-### Results for qs3:
-**Jacobian Linear Part (3x3):**
+#### Results for qs3:
+#### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -490,13 +492,11 @@ $$
 \]
 $$
 
-**Determinant:** 0.0004019232076573776  
-**Singularity Status:** Singularity Detected
+#### Determinant: 0.0004019232076573776  
+#### Singularity Status: Singularity Detected
 
----
-
-### Results for qs4:
-**Jacobian Linear Part (3x3):**
+#### Results for qs4:
+#### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -508,10 +508,12 @@ $$
 \]
 $$
 
-**Determinant:** 0.03554997075000001  
-**Singularity Status:** No Singularity
+#### Determinant: 0.03554997075000001  
+#### Singularity Status: No Singularity
 
 จากผลลัพธ์ข้างต้น พบว่าหุ่นยนต์จะอยู่ในสถานะ Singularity เมื่อค่า determinant มีค่าน้อยกว่า 0.001 และจะไม่อยู่ในสถานะ Singularity หากค่า determinant มากกว่า 0.001
+
+
 ## ข้อที่ 3 Computed Effort
 
 - **Input:**
@@ -540,7 +542,14 @@ print("Computed Effort (tau):", result)
 ```
 ### **จะได้ผลลัพธ์**
 
-![image](https://github.com/user-attachments/assets/492c8c2f-e7e5-4311-a908-3564c27eed64)
+#### -----------------answer 3 -------------------
+#### Computed Effort (tau):
+
+$$
+\[
+[0.0 \quad 0.0 \quad 0.0]
+\]
+$$
 
 ### **ตรวจคำตอบ**
  การตรวจคำตอบ ทำได้โดยการ นำค่า tau ที่ได้จากการคำนวณมาเปรียบเทียบกับค่า tau ที่ได้จาก robotictoolbox
@@ -565,6 +574,35 @@ def checkComputeEffortHW3(q, w):
 # Call the function to check the effort
 checkComputeEffortHW3(q_initial, w_initial)
 ```
-จะได้ผลลัพธ์
+### **จะได้ผลลัพธ์**
 
-![image](https://github.com/user-attachments/assets/807b44d7-bca2-4465-81fe-0de1abac7a52)
+#### -------------------check ComputeEffort ----------------------
+
+#### Effort (tau) from manual calculation (FRA333_HW3_25_55):
+$$
+\[
+\begin{bmatrix}
+  0.57243 & -2.07786 & -1.22786
+\end{bmatrix}
+\]
+$$
+
+#### Effort (tau) from toolbox (roboticstoolbox):
+
+$$
+\[
+\begin{bmatrix}
+  0.57243 & -2.07786 & -1.22786
+\end{bmatrix}
+\]
+$$
+
+#### Difference in Effort (tau):
+
+$$
+\[
+\begin{bmatrix}
+ -1.11022302e-16 & 0.00000000e+00 & -4.44089210e-16
+\end{bmatrix}
+\]
+$$
