@@ -383,13 +383,13 @@ print("Singularity3 :",checkSingularityHW3(qs3))
 print("Singularity4 :",checkSingularityHW3(qs4))
 ```
 
-### **ผลลัพธ์**
+### **จะได้ผลลัพธ์**
 - **Singularity1** : `True`  
 - **Singularity2** : `True`  
 - **Singularity3** : `True`  
 - **Singularity4** : `False`
 
-### **ความหมายของผลลัพธ์**
+ความหมายของผลลัพธ์
 - หากค่าเป็น `True` หมายความว่าหุ่นยนต์อยู่ในสถานะ **Singularity** ซึ่งอาจเกิดข้อจำกัดในเชิงการเคลื่อนไหว
 - หากค่าเป็น `False` หมายความว่าหุ่นยนต์ **ไม่ได้อยู่ในสถานะ Singularity** และสามารถเคลื่อนไหวได้อย่างอิสระในตำแหน่งนั้น ๆ
 
@@ -443,7 +443,74 @@ checkSingularity()
 ```
 ### **จะได้ผลลัพธ์**
 
-![image](https://github.com/user-attachments/assets/135f77db-41d2-48c9-8285-34534f4391f4)
+## -------------------check Singularity ----------------------
+
+### Results for qs1:
+**Jacobian Linear Part (3x3):**
+\[
+\begin{bmatrix}
+  1.63092362e-02 & -7.47610646e-18 & -2.33559107e-17 \\
+ -1.00579509e-01 & -7.36555128e-02 & -4.74429999e-01 \\
+  4.20090740e-02 &  4.84383615e-02 & -9.30000031e-02
+\end{bmatrix}
+\]
+**Determinant:** 0.00048651388752052766  
+**Singularity Status:** Singularity Detected
+
+---
+
+### Results for qs2:
+**Jacobian Linear Part (3x3):**
+
+$$
+\[
+\begin{bmatrix}
+  8.85673870e-01 & -5.65866492e-17 & -2.62649613e-17 \\
+ -3.21579522e-03 & -8.91253311e-01 & -4.74430016e-01 \\
+ -1.08952552e-01 & -1.75965973e-01 & -9.30000019e-02
+\end{bmatrix}
+\]
+$$
+
+**Determinant:** 0.0005287293674209878  
+**Singularity Status:** Singularity Detected
+
+---
+
+### Results for qs3:
+**Jacobian Linear Part (3x3):**
+
+$$
+\[
+\begin{bmatrix}
+  8.94905028e-01 & -4.38207280e-17 & -2.33558489e-17 \\
+  3.91667262e-02 & -8.91312897e-01 & -4.74430011e-01 \\
+ -1.01720048e-01 & -1.75665999e-01 & -9.29999984e-02
+\end{bmatrix}
+\]
+$$
+
+**Determinant:** 0.0004019232076573776  
+**Singularity Status:** Singularity Detected
+
+---
+
+### Results for qs4:
+**Jacobian Linear Part (3x3):**
+
+$$
+\[
+\begin{bmatrix}
+  8.99430000e-01 & -4.93795981e-17 & -2.33558524e-17 \\
+ -1.16822737e-16 & -8.99430000e-01 & -4.74430000e-01 \\
+ -1.09000000e-01 & -9.30000000e-02 & -9.30000000e-02
+\end{bmatrix}
+\]
+$$
+
+**Determinant:** 0.03554997075000001  
+**Singularity Status:** No Singularity
+
 จากผลลัพธ์ข้างต้น พบว่าหุ่นยนต์จะอยู่ในสถานะ Singularity เมื่อค่า determinant มีค่าน้อยกว่า 0.001 และจะไม่อยู่ในสถานะ Singularity หากค่า determinant มากกว่า 0.001
 ## ข้อที่ 3 Computed Effort
 
@@ -471,7 +538,7 @@ result = computeEffortHW3(q, w_initial)
 print("-----------------answer 3 -------------------")
 print("Computed Effort (tau):", result)
 ```
-จะได้ผลลัพธ์
+### **จะได้ผลลัพธ์**
 
 ![image](https://github.com/user-attachments/assets/492c8c2f-e7e5-4311-a908-3564c27eed64)
 
