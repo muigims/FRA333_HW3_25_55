@@ -31,4 +31,14 @@
 # **clone github**
 1.Clone the repository
  ```
+git clone https://github.com/muigims/FRA333_HW3_25_55.git
+  ```
+ ```
+ cd FRA333_HW3-main/FRA333_HW3-main/FRA333_HW3_25_55
+  ```
+2. Create a Python Virtual Environment
+เพื่อให้การจัดการ dependencies แยกจากระบบหลัก ให้สร้างและเปิดใช้งาน Virtual Environment
+ ```
+python -m venv env
+env\Scripts\activate
   ```
