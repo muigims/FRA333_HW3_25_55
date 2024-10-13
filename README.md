@@ -129,7 +129,8 @@ robot = rtb.DHRobot(
     [1, 0, 0, d_4],
     [0, 0, 0, 1]]),
     name = "3DOF_Robot"
-)  ```
+)
+```
 
 ### DHRobot: robot, 3 joints (RRR), dynamics, modified DH parameters
 
