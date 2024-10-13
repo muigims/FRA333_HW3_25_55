@@ -255,7 +255,7 @@ print("Jacobian from manual calculation:")
 print(J)
 ```
 ทำให้ได้ผลลัพธ์ดังนี้
-
+`
 #### Jacobian from manual calculation:
 
 $$
@@ -271,7 +271,7 @@ J =
 \end{bmatrix}
 \]
 $$
-
+`
 
 ### **ตรวจคำตอบ**
  
