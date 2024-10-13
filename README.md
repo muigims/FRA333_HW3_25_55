@@ -73,11 +73,10 @@ def checkEndEffectorJacobianHW3(q):
     # Difference between the two
     J_diff = J_toolbox - J_manual
     print("Difference in Jacobian:\n", J_diff)
+    # Call the function to check the Jacobian
+    checkEndEffectorJacobianHW3(q_initial)
   ```
-# Call the function to check the Jacobian
-checkEndEffectorJacobianHW3(q_initial)
-
-
+โค้ดนี้ แสดงการคำนวณ Jacobian จากการค
 # 2. Jacobian Matrix (เมทริกซ์จาโคเบียน)
 
 Jacobian เป็นเมทริกซ์ที่แสดงความสัมพันธ์เชิงเส้นระหว่างความเร็วของข้อต่อและความเร็วของ end-effector 
