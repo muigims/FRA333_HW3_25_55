@@ -36,7 +36,7 @@
  ```
 git clone https://github.com/muigims/FRA333_HW3_25_55.git
   ```
-2.เปิดโปรแกรม Visual Studio Code แล้วทำการ open folder FRA333_HW3_25_55 (ที่อยู่ไฟล์ตามตำแหน่งที่เลือกมา)
+2.เปิดโปรแกรม Visual Studio Code แล้วทำการ open folder FRA333_HW3_6525_6555 (ที่อยู่ไฟล์ตามตำแหน่งที่เลือกมา)
 3.ทำการรันไฟล์ FRA333_HW3_25_55.py และ testScript.py ตามลำดับ 
 ---
 # **ทฤษฎีที่เกี่ยวข้อง**
