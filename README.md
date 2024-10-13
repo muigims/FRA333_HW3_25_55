@@ -64,7 +64,8 @@ Jacobian เป็นเมทริกซ์ที่แสดงความ�
 - **Angular velocity (ความเร็วเชิงมุม):** ระบุการหมุนของ end-effector
 
 The Jacobian matrix is:  
-![Jacobian Matrix](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}\begin{bmatrix}v\\\omega\end{bmatrix}=J(q)\cdot\dot{q})
+$ \begin{bmatrix} v \\ \omega \end{bmatrix} = J(q) \cdot \dot{q} $
+
 
 
 โดยที่:
