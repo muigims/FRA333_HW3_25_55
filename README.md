@@ -1,4 +1,4 @@
-# FRA333_HW3_25_55
+![image](https://github.com/user-attachments/assets/78129f28-1773-40af-bb22-10b712141ff0)![image](https://github.com/user-attachments/assets/f706b469-8f9c-4fee-be69-23f2e76846cd)![image](https://github.com/user-attachments/assets/2bd7427d-7551-4eb1-9215-7a563969f9e6)# FRA333_HW3_25_55
  โปรเจกต์นี้เกี่ยวข้องกับการคำนวณ Jacobian, การตรวจสอบ Singularity และการคำนวณแรงบิด (Effort) ของหุ่นยนต์ 3DOF โดยใช้ Python และไลบรารี Robotics Toolbox รวมถึงการทดสอบผลลัพธ์ผ่านการคำนวณเชิงลึก
 
  ## **การติดตั้ง Environment**
@@ -114,6 +114,56 @@ $$
 - **Jᵀ** = Transpose ของ Jacobian  
 
 ## ** Implement code**
+เริ่มจากการนำตัวแปรที่ได้จากไฟล์ HW3_utils.py มาใส่ แล้วทำการสร้างตาราง MDH Parameters จาก roboticstoolbox
+ ```
+d_1 = 0.0892
+a_2 = 0.425
+a_3 = 0.39243
+d_4 = 0.109
+d_5 = 0.093
+d_6 = 0.082
+q_initial = np.array([0.0, 0.0, 0.0])
+q_singularity = np.array([0.0, pi/4, 3.13])
+
+w_initial = [1.0, 2.0, 3.0, 0.0, 0.0, 0.0] #(Fx, Fy, Fz, Tx, Ty, Tz)
+
+# Define the joint angles to test
+qs1 = [-1.91970470e-15, -8.35883143e-01, 2.80232546e+00]
+qs2 = [-0.24866892, 0.22598268, -0.19647569]
+qs3 = [1.70275090e-17, -1.71791355e-01, -1.95756090e-01]
+qs4 = [0.0, 0.0, 0.0]
+
+
+robot = rtb.DHRobot(
+    [
+        rtb.RevoluteMDH(alpha = 0.0     ,a = 0.0      ,d = d_1    ,offset = pi ),
+        rtb.RevoluteMDH(alpha = pi/2    ,a = 0.0      ,d = 0.0    ,offset = 0.0),
+        rtb.RevoluteMDH(alpha = 0.0     ,a = -a_2     ,d = 0.0    ,offset = 0.0),
+    ],
+    tool = SE3([
+    [0, 0, -1, -(a_3 + d_6)],
+    [0, 1, 0, -d_5],
+    [1, 0, 0, d_4],
+    [0, 0, 0, 1]]),
+    name = "3DOF_Robot"
+)
+```
+
+### DHRobot: robot, 3 joints (RRR), dynamics, modified DH parameters
+
+| \(a_{j-1}\) | \(\alpha_{j-1}\) | \(\theta_j\)        | \(d_j\) |
+|-------------|------------------|---------------------|--------|
+| 0.0         | 0.0°             | \(q_1 + 180^\circ\) | 0.0892 |
+| 0.0         | 90.0°            | \(q_2\)             | 0.0    |
+| -0.425      | 0.0°             | \(q_3\)             | 0.0    |
+
+### tool
+| **t**                      | **rpy/xyz**                     |
+|----------------------------|----------------------------------|
+| -0.47, -0.093, 0.11        | \(0^\circ, -90^\circ, 0^\circ\) |
+
+
+
 ข้อที่ 1 การคำนวณหา Jacobian
 ```
 def endEffectorJacobianHW3(q:list[float])->list[float]:
@@ -146,51 +196,154 @@ print("-----------------answer 1 -------------------")
 print("Jacobian from manual calculation:")
 print(J)
 ```
-ทำการตรวจคำตอบด้วยการนำค่าที่ได้จากการคำนวณโดย roboticstoolbox มาเปรียบเทียบโดยการนำมาหาผลต่าง
-```
-print("Jacobian Matrix from toolbox:")
-print(robot.jacobe(q))
-print("Difference between library and custom Jacobian:")
-print((robot.jacobe(q))-J)
-```
-ทำให้ได้ผลลัพธ์
-
-
-
-
-
+![image](https://github.com/user-attachments/assets/01bd340f-0cbe-43b2-af21-4df5c8be4bf8)
 
  # **ตรวจคำตอบ**
-
- 1. เริ่มจากการสร้างตาราง MDH Parameters จาก roboticstoolbox
+ จากค่า J ที่ได้จาก endEffectorJacobianHW3(q) ใน FRA333_HW3_25_55.py
  ```
-robot = rtb.DHRobot(
-    [
-        rtb.RevoluteMDH(alpha = 0.0     ,a = 0.0      ,d = d_1    ,offset = pi ),
-        rtb.RevoluteMDH(alpha = pi/2    ,a = 0.0      ,d = 0.0    ,offset = 0.0),
-        rtb.RevoluteMDH(alpha = 0.0     ,a = -a_2     ,d = 0.0    ,offset = 0.0),
-    ],
-    tool = SE3([
-    [0, 0, -1, -(a_3 + d_6)],
-    [0, 1, 0, -d_5],
-    [1, 0, 0, d_4],
-    [0, 0, 0, 1]]),
-    name = "3DOF_Robot"
-)
+def checkEndEffectorJacobianHW3(q):
+    print("-------------------check Jacobian ----------------------")
+    # Manual calculation using function from FRA333_HW3_25_55
+    J_manual = endEffectorJacobianHW3(q)
+
+    # Robotic toolbox calculation
+    J_toolbox = robot.jacobe(q)
+
+    # Compare Jacobians
+    print("Jacobian from manual calculation (FRA333_HW3_25_55):\n", J_manual)
+    print("Jacobian from toolbox (roboticstoolbox):\n", J_toolbox)
+
+    # Difference between the two
+    J_diff = J_toolbox - J_manual
+    print("Difference in Jacobian:\n", J_diff)
+
+# Call the function to check the Jacobian
+checkEndEffectorJacobianHW3(q_initial)
 ```
+จะได้ผลลัพธ์
+![image](https://github.com/user-attachments/assets/bd633e4a-9d89-4365-9ec3-6a96acc8ffa7)
+เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลจต่างมีค่าเท่ากับ 0 
 
-### DHRobot: robot, 3 joints (RRR), dynamics, modified DH parameters
+ข้อที่ 2 การหา Singularity
+เนื่องจาก การจะเกิด Singularity ต้องมีค่า det อยู่ในช่วง มากกว่า 0 แต่น้อยกว่า 0.001 ตามโจทย์
+```
+def checkSingularityHW3(q: list[float]) -> bool:
+    # คำนวณ Jacobian ของหุ่นยนต์
+    J = endEffectorJacobianHW3(q)
+    # ตัดเฉพาะส่วนของ Jacobian ที่เป็นความเร็วเชิงเส้น (3x3)
+    # ตัดเฉพาะส่วนของ Jacobian ที่เป็นความเร็วเชิงเส้น (3x3)
+    J_linear = J[:3, :]
+    # คำนวณ Determinant ของ Jacobian ที่ลดรูปแล้ว
+    manipularity = abs(np.linalg.det(J_linear))
+    singularity = False
+    
+    # ตรวจสอบว่า determinant มีค่าน้อยกว่า epsilon หรือไม่
+    epsilon = 0.001
+    if manipularity < epsilon:
+        singularity = True
+  # หุ่นยนต์อยู่ในสถานะ Singularity
+    return singularity
+```
+จากนั้นทำการแสดงผลค่าที่ได้จากการคำนวณ
+```
+print("-----------------answer 2 -------------------")
+print("Singularity :",checkSingularityHW3(q))
+```
+![image](https://github.com/user-attachments/assets/61a514f3-9f5a-4d97-8145-e8b1676b2835)
 
-| \(a_{j-1}\) | \(\alpha_{j-1}\) | \(\theta_j\)        | \(d_j\) |
-|-------------|------------------|---------------------|--------|
-| 0.0         | 0.0°             | \(q_1 + 180^\circ\) | 0.0892 |
-| 0.0         | 90.0°            | \(q_2\)             | 0.0    |
-| -0.425      | 0.0°             | \(q_3\)             | 0.0    |
+ # **ตรวจคำตอบ**
+ ในการตรวจคำตอบ ผู้จัดทำได้ทำการหาค่า q ที่จะทำให้แขนกลอยู่ในสถานะ Singularity ได้ 3 ค่าเพื่อทำการทดสอบ คือ qs1,qs2,qs3 และใส่ค่าเริ่มต้น คือ qs4 เพื่อทำการทดสอบ
+ ```
+# Define the joint angles to test
+qs1 = [-1.91970470e-15, -8.35883143e-01, 2.80232546e+00]
+qs2 = [-0.24866892, 0.22598268, -0.19647569]
+qs3 = [1.70275090e-17, -1.71791355e-01, -1.95756090e-01]
+qs4 = [0.0, 0.0, 0.0]
+```
+```
+def checkSingularity():
+    print("-------------------check Singularity ----------------------")
 
-### tool
-| **t**                      | **rpy/xyz**                     |
-|----------------------------|----------------------------------|
-| -0.47, -0.093, 0.11        | \(0^\circ, -90^\circ, 0^\circ\) |
+    # ฟังก์ชันเพื่อแสดงผล Singularities
+    def printSingularityResult(q, name):
+        # คำนวณ Jacobian ของหุ่นยนต์
+        J = endEffectorJacobianHW3(q)
+        
+        # ตัดเฉพาะส่วนที่เป็น Jacobian เชิงเส้น (3x3)
+        J_linear = J[:3, :]
 
+        # คำนวณ determinant ของ Jacobian เชิงเส้น
+        manipularity = abs(np.linalg.det(J_linear))
+        epsilon = 0.001
 
+        # ตรวจสอบค่า singularity
+        singularity = manipularity < epsilon
+        
+        # แสดงผลลัพธ์
+        print(f"Results for {name}:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear}")
+        print(f"Determinant: {manipularity}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity else 'No Singularity'}")
+        print("\n")
 
+    # Test qs1
+    printSingularityResult(qs1, "qs1")
+    # Test qs2
+    printSingularityResult(qs2, "qs2")
+    # Test qs3
+    printSingularityResult(qs3, "qs3")
+    # Test qs4
+    printSingularityResult(qs4, "qs4")
+
+# เรียกฟังก์ชันเพื่อเช็ค Singularities
+checkSingularity()
+```
+จะได้ผลลัพธ์
+![image](https://github.com/user-attachments/assets/135f77db-41d2-48c9-8285-34534f4391f4)
+
+ข้อที่ 3 Computed Effort
+```
+def computeEffortHW3(q: list[float], w: list[float]) -> list[float]:
+    # คำนวณ Jacobian
+    J = endEffectorJacobianHW3(q)
+    
+    # คำนวณ Jacobian Transpose โดยใช้ np.dot() แทนการใช้ @
+    J_T = np.dot(J.T, w)
+
+    # คืนค่า tau
+    return J_T
+```
+จากนั้นทำการแสดงผลค่าที่ได้จากการคำนวณ
+```
+result = computeEffortHW3(q, w_initial)
+print("-----------------answer 3 -------------------")
+print("Computed Effort (tau):", result)
+```
+จะได้ผลลัพธ์
+![image](https://github.com/user-attachments/assets/492c8c2f-e7e5-4311-a908-3564c27eed64)
+
+ # **ตรวจคำตอบ**
+ การตรวจคำตอบ ทำได้โดยการ นำค่า tau ที่ได้จากการคำนวณมาเปรียบเทียบกับค่า tau ที่ได้จาก robotictoolbox
+```
+def checkComputeEffortHW3(q, w):
+    print("-------------------check ComputeEffort ----------------------")
+    # Manual effort calculation using function from FRA333_HW3_25_55
+    tau_manual = computeEffortHW3(q, w)
+
+    # Robotic toolbox effort calculation
+    J_toolbox = robot.jacobe(q)
+    tau_toolbox = np.dot(J_toolbox.T, w)
+
+    # Compare efforts
+    print("Effort (tau) from manual calculation (FRA333_HW3_25_55):\n", tau_manual)
+    print("Effort (tau) from toolbox (roboticstoolbox):\n", tau_toolbox)
+
+    # Difference between the two
+    tau_diff = tau_toolbox - tau_manual
+    print("Difference in Effort (tau):\n", tau_diff)
+
+# Call the function to check the effort
+checkComputeEffortHW3(q_initial, w_initial)
+```
+จะได้ผลลัพธ์
+![image](https://github.com/user-attachments/assets/807b44d7-bca2-4465-81fe-0de1abac7a52)
