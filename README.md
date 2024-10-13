@@ -164,8 +164,8 @@ $$
 - **Jᵀ** = Transpose ของ Jacobian  
 ---
 # **Implement code**
-จากไฟล์ `HW3_utils.py`  ที่ได้รับมา ทำให้ได้ค่า return ออกมา 4 ค่า ได้แก่ $R,p<R_e,P_e$
-เริ่มจากการนำตัวแปรที่ได้จากไฟล์ HW3_utils.py มาใส่ แล้วทำการสร้างตาราง MDH Parameters จาก roboticstoolbox
+จากไฟล์ `HW3_utils.py`  ที่ได้รับมา ทำให้ได้ค่า return ออกมา 4 ค่า ได้แก่ $R,p,R_e,P_e$
+เริ่มจากการนำตัวแปรที่ได้จากไฟล์ `HW3_utils.py` มาใส่ แล้วทำการสร้างตาราง MDH Parameters จาก roboticstoolbox
  ```
 d_1 = 0.0892
 a_2 = 0.425
@@ -253,6 +253,14 @@ print(J)
 ### **ตรวจคำตอบ**
  
  จากค่า J ที่ได้จาก endEffectorJacobianHW3(q) ใน FRA333_HW3_25_55.py
+ ## รายละเอียด Input และ Output:
+
+- **Input:**
+  - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
+
+- **Output:**
+  - `J: list[float]` – Jacobian Matrix ขนาด \(6 \times 3\) ซึ่งแสดงความสัมพันธ์ระหว่างความเร็วของข้อต่อและความเร็วของ end-effector
+
  ```
 def checkEndEffectorJacobianHW3(q):
     print("-------------------check Jacobian ----------------------")
