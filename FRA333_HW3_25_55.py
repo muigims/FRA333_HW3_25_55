@@ -63,7 +63,7 @@ def endEffectorJacobianHW3(q:list[float])->list[float]:
     return J
 J = endEffectorJacobianHW3(q)
 print("-----------------answer 1 -------------------")
-print("Jacobian Matrix from me:")
+print("Jacobian from manual calculation:")
 print(J)
 print("Jacobian Matrix from toolbox:")
 print(robot.jacobe(q))

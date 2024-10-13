@@ -31,6 +31,8 @@ w_initial = [1.0, 2.0, 3.0, 0.0, 0.0, 0.0] #(Fx, Fy, Fz, Tx, Ty, Tz)
 qs1 = [-1.91970470e-15, -8.35883143e-01, 2.80232546e+00]
 qs2 = [-0.24866892, 0.22598268, -0.19647569]
 qs3 = [1.70275090e-17, -1.71791355e-01, -1.95756090e-01]
+qs4 = [0.0, 0.0, 0.0]
+
 
 robot = rtb.DHRobot(
     [
@@ -102,6 +104,8 @@ def checkSingularity():
     printSingularityResult(qs2, "qs2")
     # Test qs3
     printSingularityResult(qs3, "qs3")
+    # Test qs4
+    printSingularityResult(qs4, "qs4")
 
 # เรียกฟังก์ชันเพื่อเช็ค Singularities
 checkSingularity()
