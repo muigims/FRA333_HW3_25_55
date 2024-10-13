@@ -502,7 +502,7 @@ $$
 \
 $$
 
-
+---
 #### Results for qs2:
 
 ##### Manual Calculation:
@@ -548,7 +548,7 @@ $$
 \end{bmatrix}
 \
 $$
-
+---
 #### Results for qs3:
 
 ##### Manual Calculation:
@@ -595,7 +595,7 @@ $$
 \end{bmatrix}
 \
 $$
-
+---
 #### Results for qs4:
 
 ##### Manual Calculation:
