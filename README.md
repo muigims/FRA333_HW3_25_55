@@ -297,7 +297,7 @@ def checkEndEffectorJacobianHW3(q):
 # Call the function to check the Jacobian
 checkEndEffectorJacobianHW3(q_initial)
 ```
-จะได้ผลลัพธ์
+### **จะได้ผลลัพธ์**
 #### -----------------check Jacobian -------------------
 
 #### Jacobian from manual calculation (FRA333_HW3_25_55):
@@ -377,10 +377,21 @@ def checkSingularityHW3(q: list[float]) -> bool:
 จากนั้นทำการแสดงผลค่าที่ได้จากการคำนวณ
 ```
 print("-----------------answer 2 -------------------")
-print("Singularity :",checkSingularityHW3(q))
+print("Singularity1 :",checkSingularityHW3(qs1))
+print("Singularity2 :",checkSingularityHW3(qs2))
+print("Singularity3 :",checkSingularityHW3(qs3))
+print("Singularity4 :",checkSingularityHW3(qs4))
 ```
 
-![image](https://github.com/user-attachments/assets/61a514f3-9f5a-4d97-8145-e8b1676b2835)
+### **ผลลัพธ์**
+- **Singularity1** : `True`  
+- **Singularity2** : `True`  
+- **Singularity3** : `True`  
+- **Singularity4** : `False`
+
+### **ความหมายของผลลัพธ์**
+- หากค่าเป็น `True` หมายความว่าหุ่นยนต์อยู่ในสถานะ **Singularity** ซึ่งอาจเกิดข้อจำกัดในเชิงการเคลื่อนไหว
+- หากค่าเป็น `False` หมายความว่าหุ่นยนต์ **ไม่ได้อยู่ในสถานะ Singularity** และสามารถเคลื่อนไหวได้อย่างอิสระในตำแหน่งนั้น ๆ
 
 ### **ตรวจคำตอบ**
 ในการตรวจคำตอบ ผู้จัดทำได้ทำการหาค่า q ที่จะทำให้แขนกลอยู่ในสถานะ Singularity ได้ 3 ค่าเพื่อทำการทดสอบ คือ qs1,qs2,qs3 และใส่ค่าเริ่มต้น คือ qs4 เพื่อทำการทดสอบ
@@ -430,7 +441,7 @@ def checkSingularity():
 # เรียกฟังก์ชันเพื่อเช็ค Singularities
 checkSingularity()
 ```
-จะได้ผลลัพธ์
+### **จะได้ผลลัพธ์**
 
 ![image](https://github.com/user-attachments/assets/135f77db-41d2-48c9-8285-34534f4391f4)
 จากผลลัพธ์ข้างต้น พบว่าหุ่นยนต์จะอยู่ในสถานะ Singularity เมื่อค่า determinant มีค่าน้อยกว่า 0.001 และจะไม่อยู่ในสถานะ Singularity หากค่า determinant มากกว่า 0.001
