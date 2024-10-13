@@ -289,7 +289,14 @@ checkEndEffectorJacobianHW3(q_initial)
 เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลจต่างมีค่าเท่ากับ 0 
 
 ## ข้อที่ 2 การหา Singularity
-เนื่องจาก การจะเกิด Singularity ต้องมีค่า det อยู่ในช่วง มากกว่า 0 แต่น้อยกว่า 0.001 ตามโจทย์
+- **Input:**
+  - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
+
+- **Output:**
+  - **ผลลัพธ์เป็น Boolean:** – แสดงว่าหุ่นยนต์อยู่ในสถานะ Singularity หรือไม่
+    - `True`: หุ่นยนต์อยู่ในสถานะ Singularity  
+    - `False`: หุ่นยนต์ไม่ได้อยู่ในสถานะ Singularity
+   
 ```
 def checkSingularityHW3(q: list[float]) -> bool:
     # คำนวณ Jacobian ของหุ่นยนต์
@@ -366,8 +373,16 @@ checkSingularity()
 จะได้ผลลัพธ์
 
 ![image](https://github.com/user-attachments/assets/135f77db-41d2-48c9-8285-34534f4391f4)
-
+จากผลลัพธ์ข้างต้น พบว่าหุ่นยนต์จะอยู่ในสถานะ Singularity เมื่อค่า determinant มีค่าน้อยกว่า 0.001 และจะไม่อยู่ในสถานะ Singularity หากค่า determinant มากกว่า 0.001
 ## ข้อที่ 3 Computed Effort
+
+- **Input:**
+  - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
+  - `w: list[float]` – แรงกระทำและโมเมนต์ที่กระทำกับ end-effector เช่น `[Fx, Fy, Fz, Tx, Ty, Tz]`
+
+- **Output:**
+  - `tau: list[float]` – เวกเตอร์แสดงแรงบิดที่ต้องใช้กับแต่ละข้อต่อ เพื่อรักษาสมดุลกับแรงที่กระทำบน end-effector
+
 ```
 def computeEffortHW3(q: list[float], w: list[float]) -> list[float]:
     # คำนวณ Jacobian
