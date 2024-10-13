@@ -374,8 +374,8 @@ def checkSingularityHW3(q: list[float]) -> bool:
     return singularity
 ```
 จากนั้นทำการแสดงผลค่าที่ได้จากการคำนวณ
+
 ```
-print("-----------------answer 2 -------------------")
 print("Singularity1 :",checkSingularityHW3(qs1))
 print("Singularity2 :",checkSingularityHW3(qs2))
 print("Singularity3 :",checkSingularityHW3(qs3))
@@ -404,8 +404,6 @@ qs4 = [0.0, 0.0, 0.0]
 
 ```
 def checkSingularity():
-    print("-------------------check Singularity ----------------------")
-
     # ฟังก์ชันเพื่อแสดงผล Singularities
     def printSingularityResult(q, name):
         # คำนวณ Jacobian ของหุ่นยนต์
@@ -441,8 +439,6 @@ def checkSingularity():
 checkSingularity()
 ```
 ### **จะได้ผลลัพธ์**
-
-#### -------------------check Singularity ----------------------
 
 #### Results for qs1:
 #### Jacobian Linear Part (3x3):
@@ -536,12 +532,10 @@ def computeEffortHW3(q: list[float], w: list[float]) -> list[float]:
 จากนั้นทำการแสดงผลค่าที่ได้จากการคำนวณ
 ```
 result = computeEffortHW3(q, w_initial)
-print("-----------------answer 3 -------------------")
 print("Computed Effort (tau):", result)
 ```
 ### **จะได้ผลลัพธ์**
 
-#### -----------------answer 3 -------------------
 #### Computed Effort (tau):
 
 $$
@@ -554,7 +548,6 @@ $$
  การตรวจคำตอบ ทำได้โดยการ นำค่า tau ที่ได้จากการคำนวณมาเปรียบเทียบกับค่า tau ที่ได้จาก robotictoolbox
 ```
 def checkComputeEffortHW3(q, w):
-    print("-------------------check ComputeEffort ----------------------")
     # Manual effort calculation using function from FRA333_HW3_25_55
     tau_manual = computeEffortHW3(q, w)
 
@@ -575,7 +568,6 @@ checkComputeEffortHW3(q_initial, w_initial)
 ```
 ### **จะได้ผลลัพธ์**
 
-#### -------------------check ComputeEffort ----------------------
 
 #### Effort (tau) from manual calculation (FRA333_HW3_25_55):
 $$
