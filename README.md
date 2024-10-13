@@ -49,6 +49,7 @@ Kinematics เป็นการศึกษาเกี่ยวกับกา
 Forward Kinematics ใช้สำหรับหาตำแหน่งและการหมุนของ end-effector เมื่อทราบมุมของข้อต่อแต่ละข้อ การคำนวณนี้จำเป็นสำหรับการคาดการณ์ตำแหน่งที่หุ่นยนต์จะเคลื่อนไปเมื่อปรับมุมของข้อต่อ
 
 สมการทั่วไปของ FK:
-\begin{equation}
+
+\[
 \mathbf{T}_{0,n} = \mathbf{T}_{0,1} \cdot \mathbf{T}_{1,2} \cdot \ldots \cdot \mathbf{T}_{n-1,n}
-\end{equation}
+\]
