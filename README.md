@@ -222,7 +222,7 @@ robot = rtb.DHRobot(
   - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
 
 - **Output:**
-  - `J: list[float]` – Jacobian Matrix ขนาด \(6 \times 3\) ซึ่งแสดงความสัมพันธ์ระหว่างความเร็วของข้อต่อและความเร็วของ end-effector
+  - `J: list[float]` – Jacobian Matrix ขนาด \$(6 \times 3\)$ ซึ่งแสดงความสัมพันธ์ระหว่างความเร็วของข้อต่อและความเร็วของ end-effector
 
 ```
 def endEffectorJacobianHW3(q:list[float])->list[float]:
@@ -251,12 +251,26 @@ def endEffectorJacobianHW3(q:list[float])->list[float]:
 #define q parameter
 q = np.array([0.0, 0.0, 0.0])
 J = endEffectorJacobianHW3(q)
-print("-----------------answer 1 -------------------")
 print("Jacobian from manual calculation:")
 print(J)
 ```
+### **จะได้ผลลัพธ์**
 
-![image](https://github.com/user-attachments/assets/01bd340f-0cbe-43b2-af21-4df5c8be4bf8)
+#### Jacobian from manual calculation:
+
+$$
+\[
+J = 
+\begin{bmatrix}
+8.9943 \times 10^{-1} & -4.9379 \times 10^{-17} & -2.3356 \times 10^{-17} \\
+-1.1682 \times 10^{-16} & -8.9943 \times 10^{-1} & -4.7443 \times 10^{-1} \\
+-1.0900 \times 10^{-1} & -9.3000 \times 10^{-2} & -9.3000 \times 10^{-2} \\
+1.2246 \times 10^{-16} & 1.0000 \times 10^{0} & 1.0000 \times 10^{0} \\
+1.0000 \times 10^{0} & -6.1232 \times 10^{-17} & -6.1232 \times 10^{-17} \\
+-6.1232 \times 10^{-17} & 6.1232 \times 10^{-17} & 6.1232 \times 10^{-17}
+\end{bmatrix}
+\]
+$$
 
 ### **ตรวจคำตอบ**
  
@@ -264,7 +278,6 @@ print(J)
 
  ```
 def checkEndEffectorJacobianHW3(q):
-    print("-------------------check Jacobian ----------------------")
     # Manual calculation using function from FRA333_HW3_25_55
     J_manual = endEffectorJacobianHW3(q)
 
@@ -282,14 +295,63 @@ def checkEndEffectorJacobianHW3(q):
 # Call the function to check the Jacobian
 checkEndEffectorJacobianHW3(q_initial)
 ```
-จะได้ผลลัพธ์
+### **จะได้ผลลัพธ์**
+#### Jacobian from manual calculation (FRA333_HW3_25_55):
 
-![image](https://github.com/user-attachments/assets/bd633e4a-9d89-4365-9ec3-6a96acc8ffa7)
+$$
+\[
+\begin{bmatrix}
+8.9943 \times 10^{-1} & -4.9379 \times 10^{-17} & -2.3356 \times 10^{-17} \\
+-1.1682 \times 10^{-16} & -8.9943 \times 10^{-1} & -4.7443 \times 10^{-1} \\
+-1.0900 \times 10^{-1} & -9.3000 \times 10^{-2} & -9.3000 \times 10^{-2} \\
+1.2246 \times 10^{-16} & 1.0000 \times 10^{0} & 1.0000 \times 10^{0} \\
+1.0000 \times 10^{0} & -6.1232 \times 10^{-17} & -6.1232 \times 10^{-17} \\
+-6.1232 \times 10^{-17} & 6.1232 \times 10^{-17} & 6.1232 \times 10^{-17}
+\end{bmatrix}
+\]
+$$
 
-เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลจต่างมีค่าเท่ากับ 0 
+#### Jacobian from toolbox (roboticstoolbox):
+
+$$
+\[
+\begin{bmatrix}
+8.9943 \times 10^{-1} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+-5.5074 \times 10^{-35} & -8.9943 \times 10^{-1} & -4.7443 \times 10^{-1} \\
+-1.0900 \times 10^{-1} & -9.3000 \times 10^{-2} & -9.3000 \times 10^{-2} \\
+1.0000 \times 10^{0} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+1.0000 \times 10^{0} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+0.0000 \times 10^{0} & 0.0000 \times 10^{0} & 1.0000 \times 10^{0}
+\end{bmatrix}
+\]
+$$
+
+#### Difference in Jacobian:
+
+$$
+\[
+\begin{bmatrix}
+0.0000 \times 10^{0} & 4.9379 \times 10^{-17} & 2.3356 \times 10^{-17} \\
+6.1748 \times 10^{-17} & 0.0000 \times 10^{0} & 5.5511 \times 10^{-17} \\
+5.5511 \times 10^{-17} & 5.5511 \times 10^{-17} & 2.7756 \times 10^{-17} \\
+0.0000 \times 10^{0} & 0.0000 \times 10^{0} & 0.0000 \times 10^{0} \\
+-6.1232 \times 10^{-17} & 6.1232 \times 10^{-17} & 0.0000 \times 10^{0} \\
+6.1232 \times 10^{-17} & -6.1232 \times 10^{-17} & -6.1232 \times 10^{-17}
+\end{bmatrix}
+\]
+$$
+
+เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลต่างมีค่าเทียบเท่า 0 
 
 ## ข้อที่ 2 การหา Singularity
-เนื่องจาก การจะเกิด Singularity ต้องมีค่า det อยู่ในช่วง มากกว่า 0 แต่น้อยกว่า 0.001 ตามโจทย์
+- **Input:**
+  - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
+
+- **Output:**
+  - **ผลลัพธ์เป็น Boolean:** – แสดงว่าหุ่นยนต์อยู่ในสถานะ Singularity หรือไม่
+    - `True`: หุ่นยนต์อยู่ในสถานะ Singularity  
+    - `False`: หุ่นยนต์ไม่ได้อยู่ในสถานะ Singularity
+   
 ```
 def checkSingularityHW3(q: list[float]) -> bool:
     # คำนวณ Jacobian ของหุ่นยนต์
@@ -309,12 +371,23 @@ def checkSingularityHW3(q: list[float]) -> bool:
     return singularity
 ```
 จากนั้นทำการแสดงผลค่าที่ได้จากการคำนวณ
+
 ```
-print("-----------------answer 2 -------------------")
-print("Singularity :",checkSingularityHW3(q))
+print("Singularity1 :",checkSingularityHW3(qs1))
+print("Singularity2 :",checkSingularityHW3(qs2))
+print("Singularity3 :",checkSingularityHW3(qs3))
+print("Singularity4 :",checkSingularityHW3(qs4))
 ```
 
-![image](https://github.com/user-attachments/assets/61a514f3-9f5a-4d97-8145-e8b1676b2835)
+### **จะได้ผลลัพธ์**
+- **Singularity1** : `True`  
+- **Singularity2** : `True`  
+- **Singularity3** : `True`  
+- **Singularity4** : `False`
+
+ความหมายของผลลัพธ์
+- หากค่าเป็น `True` หมายความว่าหุ่นยนต์อยู่ในสถานะ **Singularity** ซึ่งอาจเกิดข้อจำกัดในเชิงการเคลื่อนไหว
+- หากค่าเป็น `False` หมายความว่าหุ่นยนต์ **ไม่ได้อยู่ในสถานะ Singularity** และสามารถเคลื่อนไหวได้อย่างอิสระในตำแหน่งนั้น ๆ
 
 ### **ตรวจคำตอบ**
 ในการตรวจคำตอบ ผู้จัดทำได้ทำการหาค่า q ที่จะทำให้แขนกลอยู่ในสถานะ Singularity ได้ 3 ค่าเพื่อทำการทดสอบ คือ qs1,qs2,qs3 และใส่ค่าเริ่มต้น คือ qs4 เพื่อทำการทดสอบ
@@ -325,49 +398,258 @@ qs2 = [-0.24866892, 0.22598268, -0.19647569]
 qs3 = [1.70275090e-17, -1.71791355e-01, -1.95756090e-01]
 qs4 = [0.0, 0.0, 0.0]
 ```
+
 ```
 def checkSingularity():
     print("-------------------check Singularity ----------------------")
 
     # ฟังก์ชันเพื่อแสดงผล Singularities
     def printSingularityResult(q, name):
-        # คำนวณ Jacobian ของหุ่นยนต์
-        J = endEffectorJacobianHW3(q)
-        
-        # ตัดเฉพาะส่วนที่เป็น Jacobian เชิงเส้น (3x3)
-        J_linear = J[:3, :]
+        # คำนวณ Jacobian ของหุ่นยนต์จากฟังก์ชันที่พัฒนาเอง
+        J_manual = endEffectorJacobianHW3(q)
+        J_linear_manual = J_manual[:3, :]  # ตัดส่วน Linear (3x3)
 
-        # คำนวณ determinant ของ Jacobian เชิงเส้น
-        manipularity = abs(np.linalg.det(J_linear))
+        # คำนวณ Jacobian จาก Robotic Toolbox
+        J_toolbox = robot.jacobe(q)
+        J_linear_toolbox = J_toolbox[:3, :]  # ตัดส่วน Linear (3x3)
+
+        # คำนวณ determinant ของทั้งสอง Jacobian
+        manipularity_manual = abs(np.linalg.det(J_linear_manual))
+        manipularity_toolbox = abs(np.linalg.det(J_linear_toolbox))
+
+        # คำนวณความแตกต่างระหว่างผลลัพธ์จากทั้งสอง
+        J_diff = J_linear_toolbox - J_linear_manual
+
+        # ตรวจสอบว่าอยู่ในสถานะ Singularity หรือไม่
         epsilon = 0.001
+        singularity_manual = manipularity_manual < epsilon
+        singularity_toolbox = manipularity_toolbox < epsilon
 
-        # ตรวจสอบค่า singularity
-        singularity = manipularity < epsilon
-        
         # แสดงผลลัพธ์
         print(f"Results for {name}:")
-        print(f"Jacobian Linear Part (3x3):\n{J_linear}")
-        print(f"Determinant: {manipularity}")
-        print(f"Singularity Status: {'Singularity Detected' if singularity else 'No Singularity'}")
+        print("\nManual Calculation:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear_manual}")
+        print(f"Determinant: {manipularity_manual}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity_manual else 'No Singularity'}")
+
+        print("\nRobotic Toolbox Calculation:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear_toolbox}")
+        print(f"Determinant: {manipularity_toolbox}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity_toolbox else 'No Singularity'}")
+
+        print("\nDifference between Toolbox and Manual:")
+        print(J_diff)
         print("\n")
 
-    # Test qs1
+    # ทดสอบ Singularities สำหรับชุดมุมต่าง ๆ
     printSingularityResult(qs1, "qs1")
-    # Test qs2
     printSingularityResult(qs2, "qs2")
-    # Test qs3
     printSingularityResult(qs3, "qs3")
-    # Test qs4
     printSingularityResult(qs4, "qs4")
 
-# เรียกฟังก์ชันเพื่อเช็ค Singularities
+# เรียกฟังก์ชันเพื่อตรวจสอบ Singularities
 checkSingularity()
-```
-จะได้ผลลัพธ์
 
-![image](https://github.com/user-attachments/assets/135f77db-41d2-48c9-8285-34534f4391f4)
+```
+### **จะได้ผลลัพธ์**
+
+#### Results for qs1:
+
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+1.63092362e-02 & -7.47610646e-18 & -2.33559107e-17 \\
+-1.00579509e-01 & -7.36555128e-02 & -4.74429999e-01 \\
+4.20090740e-02 & 4.84383615e-02 & -9.30000031e-02
+\end{bmatrix}
+\]
+$$
+
+##### Determinant: 0.00048651388752052766  
+##### Singularity Status: Singularity Detected
+
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+0.01630924 & 0.00000000 & 0.00000000 \\
+-0.10057951 & -0.07365551 & -0.47443 \\
+0.04200907 & 0.04843836 & -0.093
+\end{bmatrix}
+\]
+$$
+
+##### Determinant: 0.0004865138888846027  
+##### Singularity Status: Singularity Detected
+
+##### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+7.97972799e-17 & 7.47610646e-18 & 2.33559107e-17 \\
+1.45909992e-10 & 2.27564703e-10 & -1.30026162e-09 \\
+7.45823320e-10 & 5.70952723e-10 & 3.10985616e-09
+\end{bmatrix}
+\]
+$$
+
+
+#### Results for qs2:
+
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+8.85673870e-01 & -5.65866492e-17 & -2.62649613e-17 \\
+-3.21579522e-03 & -8.91253311e-01 & -4.74430016e-01 \\
+-1.08952552e-01 & -1.75965973e-01 & -9.30000019e-02
+\end{bmatrix}
+\]
+$$
+
+##### Determinant: 0.0005287293674209878  
+##### Singularity Status: Singularity Detected
+
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+0.88567385 & -0.00000000 & 0.00000000 \\
+-0.0032158 & -0.89125328 & -0.47443 \\
+-0.10895255 & -0.17596597 & -0.093
+\end{bmatrix}
+\]
+$$
+
+##### Determinant: 0.0005287293084899891  
+##### Singularity Status: Singularity Detected
+
+##### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+-2.36743580e-08 & 5.65866492e-17 & 2.62649613e-17 \\
+6.43629204e-12 & 3.00508782e-08 & 1.60838307e-08 \\
+-4.45042739e-10 & 3.59153099e-09 & 1.89488747e-09
+\end{bmatrix}
+\]
+$$
+
+#### Results for qs3:
+
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+8.94905028e-01 & -4.38207280e-17 & -2.33558489e-17 \\
+3.91667262e-02 & -8.91312897e-01 & -4.74430011e-01 \\
+-1.01720048e-01 & -1.75665999e-01 & -9.29999984e-02
+\end{bmatrix}
+\]
+$$
+
+##### Determinant: 0.0004019232076573776  
+##### Singularity Status: Singularity Detected
+
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+0.89490503 & -0.00000000 & 0.00000000 \\
+0.03916673 & -0.89131288 & -0.47443 \\
+-0.10172005 & -0.175666 & -0.093
+\end{bmatrix}
+\]
+$$
+
+
+##### Determinant: 0.00040192318994076645  
+##### Singularity Status: Singularity Detected
+
+##### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+-1.11022302e-16 & 4.38207280e-17 & 2.33558489e-17 \\
+-7.81986351e-11 & 2.10001000e-08 & 1.11740912e-08 \\
+2.54416412e-09 & -3.00710165e-09 & -1.61173239e-09
+\end{bmatrix}
+\]
+$$
+
+#### Results for qs4:
+
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+8.99430000e-01 & -4.93795981e-17 & -2.33558524e-17 \\
+-1.16822737e-16 & -8.99430000e-01 & -4.74430000e-01 \\
+-1.09000000e-01 & -9.30000000e-02 & -9.30000000e-02
+\end{bmatrix}
+\]
+$$
+
+##### Determinant: 0.03554997075000001  
+##### Singularity Status: No Singularity
+
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+8.99430000e-01 & 0.00000000e+00 & 0.00000000e+00 \\
+-5.50742035e-17 & -8.99430000e-01 & -4.74430000e-01 \\
+-1.09000000e-01 & -9.30000000e-02 & -9.30000000e-02
+\end{bmatrix}
+\]
+$$
+
+##### Determinant: 0.03554997074999999  
+##### Singularity Status: No Singularity
+
+##### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+0.00000000e+00 & 4.93795981e-17 & 2.33558524e-17 \\
+6.17485337e-17 & 0.00000000e+00 & -5.55111512e-17 \\
+-5.55111512e-17 & -5.55111512e-17 & -2.77555756e-17
+\end{bmatrix}
+\]
+$$
+
+จากผลลัพธ์ข้างต้น พบว่าหุ่นยนต์จะอยู่ในสถานะ Singularity เมื่อค่า determinant มีค่าน้อยกว่า 0.001 และจะไม่อยู่ในสถานะ Singularity หากค่า determinant มากกว่า 0.001 และเมื่อเช็คจากการนำค่าที่คำนวณเองมาเปรียบเทียบกับค่าที่คำนวณจาก robotictoolbox ทำให้ด้ค่าออกมาเทีัยบเท่ากับ 0 
 
 ## ข้อที่ 3 Computed Effort
+
+- **Input:**
+  - `q: list[float]` – เวกเตอร์แสดงมุมของข้อต่อ เช่น `[q1, q2, q3]`
+  - `w: list[float]` – แรงกระทำและโมเมนต์ที่กระทำกับ end-effector เช่น `[Fx, Fy, Fz, Tx, Ty, Tz]`
+
+- **Output:**
+  - `tau: list[float]` – เวกเตอร์แสดงแรงบิดที่ต้องใช้กับแต่ละข้อต่อ เพื่อรักษาสมดุลกับแรงที่กระทำบน end-effector
+
 ```
 def computeEffortHW3(q: list[float], w: list[float]) -> list[float]:
     # คำนวณ Jacobian
@@ -382,18 +664,22 @@ def computeEffortHW3(q: list[float], w: list[float]) -> list[float]:
 จากนั้นทำการแสดงผลค่าที่ได้จากการคำนวณ
 ```
 result = computeEffortHW3(q, w_initial)
-print("-----------------answer 3 -------------------")
 print("Computed Effort (tau):", result)
 ```
-จะได้ผลลัพธ์
+### **จะได้ผลลัพธ์**
 
-![image](https://github.com/user-attachments/assets/492c8c2f-e7e5-4311-a908-3564c27eed64)
+#### Computed Effort (tau):
+
+$$
+\[
+[0.0 \quad 0.0 \quad 0.0]
+\]
+$$
 
 ### **ตรวจคำตอบ**
  การตรวจคำตอบ ทำได้โดยการ นำค่า tau ที่ได้จากการคำนวณมาเปรียบเทียบกับค่า tau ที่ได้จาก robotictoolbox
 ```
 def checkComputeEffortHW3(q, w):
-    print("-------------------check ComputeEffort ----------------------")
     # Manual effort calculation using function from FRA333_HW3_25_55
     tau_manual = computeEffortHW3(q, w)
 
@@ -412,6 +698,34 @@ def checkComputeEffortHW3(q, w):
 # Call the function to check the effort
 checkComputeEffortHW3(q_initial, w_initial)
 ```
-จะได้ผลลัพธ์
+### **จะได้ผลลัพธ์**
 
-![image](https://github.com/user-attachments/assets/807b44d7-bca2-4465-81fe-0de1abac7a52)
+
+#### Effort (tau) from manual calculation (FRA333_HW3_25_55):
+$$
+\[
+\begin{bmatrix}
+  0.57243 & -2.07786 & -1.22786
+\end{bmatrix}
+\]
+$$
+
+#### Effort (tau) from toolbox (roboticstoolbox):
+
+$$
+\[
+\begin{bmatrix}
+  0.57243 & -2.07786 & -1.22786
+\end{bmatrix}
+\]
+$$
+
+#### Difference in Effort (tau):
+
+$$
+\[
+\begin{bmatrix}
+ -1.11022302e-16 & 0.00000000e+00 & -4.44089210e-16
+\end{bmatrix}
+\]
+$$
