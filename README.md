@@ -164,7 +164,7 @@ $$
 - **Jᵀ** = Transpose ของ Jacobian  
 ---
 # **Implement code**
-
+จากไฟล์ `HW3_utils.py`  ที่ได้รับมา ทำให้ได้ค่า return ออกมา 4 ค่า ได้แก่ $R,p<R_e,P_e$
 เริ่มจากการนำตัวแปรที่ได้จากไฟล์ HW3_utils.py มาใส่ แล้วทำการสร้างตาราง MDH Parameters จาก roboticstoolbox
  ```
 d_1 = 0.0892
