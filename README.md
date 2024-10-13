@@ -455,8 +455,8 @@ checkSingularity()
 
 #### Results for qs1:
 
-#### Manual Calculation:
-#### Jacobian Linear Part (3x3):
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -468,11 +468,11 @@ $$
 \]
 $$
 
-#### Determinant: 0.00048651388752052766  
-#### Singularity Status: Singularity Detected
+##### Determinant: 0.00048651388752052766  
+##### Singularity Status: Singularity Detected
 
-#### Robotic Toolbox Calculation:
-#### Jacobian Linear Part (3x3):
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -484,10 +484,10 @@ $$
 \]
 $$
 
-####Determinant: 0.0004865138888846027  
-#### Singularity Status: Singularity Detected
+##### Determinant: 0.0004865138888846027  
+##### Singularity Status: Singularity Detected
 
-#### Difference between Toolbox and Manual:
+##### Difference between Toolbox and Manual:
 
 $$
 \[
@@ -499,12 +499,11 @@ $$
 \]
 $$
 
----
 
 #### Results for qs2:
 
-#### Manual Calculation:
-#### Jacobian Linear Part (3x3):
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -516,11 +515,11 @@ $$
 \]
 $$
 
-#### Determinant: 0.0005287293674209878  
-#### Singularity Status: Singularity Detected
+##### Determinant: 0.0005287293674209878  
+##### Singularity Status: Singularity Detected
 
-#### Robotic Toolbox Calculation:
-#### Jacobian Linear Part (3x3):
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -532,10 +531,10 @@ $$
 \]
 $$
 
-#### Determinant: 0.0005287293084899891  
-#### Singularity Status: Singularity Detected
+##### Determinant: 0.0005287293084899891  
+##### Singularity Status: Singularity Detected
 
-#### Difference between Toolbox and Manual:
+##### Difference between Toolbox and Manual:
 
 $$
 \[
@@ -546,12 +545,11 @@ $$
 \end{bmatrix}
 \]
 $$
----
 
 #### Results for qs3:
 
-#### Manual Calculation:
-#### Jacobian Linear Part (3x3):
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -563,11 +561,11 @@ $$
 \]
 $$
 
-#### Determinant: 0.0004019232076573776  
-#### Singularity Status: Singularity Detected
+##### Determinant: 0.0004019232076573776  
+##### Singularity Status: Singularity Detected
 
-#### Robotic Toolbox Calculation:
-#### Jacobian Linear Part (3x3):
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -580,10 +578,10 @@ $$
 $$
 
 
-#### Determinant: 0.00040192318994076645  
-#### Singularity Status: Singularity Detected
+##### Determinant: 0.00040192318994076645  
+##### Singularity Status: Singularity Detected
 
-#### Difference between Toolbox and Manual:
+##### Difference between Toolbox and Manual:
 
 $$
 \[
@@ -597,8 +595,8 @@ $$
 
 #### Results for qs4:
 
-#### Manual Calculation:
-#### Jacobian Linear Part (3x3):
+##### Manual Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -610,11 +608,11 @@ $$
 \]
 $$
 
-#### Determinant: 0.03554997075000001  
-#### Singularity Status: No Singularity
+##### Determinant: 0.03554997075000001  
+##### Singularity Status: No Singularity
 
-#### Robotic Toolbox Calculation:
-#### Jacobian Linear Part (3x3):
+##### Robotic Toolbox Calculation:
+##### Jacobian Linear Part (3x3):
 
 $$
 \[
@@ -626,10 +624,10 @@ $$
 \]
 $$
 
-#### Determinant: 0.03554997074999999  
-#### Singularity Status: No Singularity
+##### Determinant: 0.03554997074999999  
+##### Singularity Status: No Singularity
 
-#### Difference between Toolbox and Manual:
+##### Difference between Toolbox and Manual:
 
 $$
 \[
