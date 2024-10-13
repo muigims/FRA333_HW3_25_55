@@ -341,7 +341,7 @@ $$
 \]
 $$
 
-เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลจต่างมีค่าเท่ากับ 0 
+เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลต่างมีค่าเทียบเท่า 0 
 
 ## ข้อที่ 2 การหา Singularity
 - **Input:**
@@ -401,51 +401,69 @@ qs4 = [0.0, 0.0, 0.0]
 
 ```
 def checkSingularity():
+    print("-------------------check Singularity ----------------------")
+
     # ฟังก์ชันเพื่อแสดงผล Singularities
     def printSingularityResult(q, name):
-        # คำนวณ Jacobian ของหุ่นยนต์
-        J = endEffectorJacobianHW3(q)
-        
-        # ตัดเฉพาะส่วนที่เป็น Jacobian เชิงเส้น (3x3)
-        J_linear = J[:3, :]
+        # คำนวณ Jacobian ของหุ่นยนต์จากฟังก์ชันที่พัฒนาเอง
+        J_manual = endEffectorJacobianHW3(q)
+        J_linear_manual = J_manual[:3, :]  # ตัดส่วน Linear (3x3)
 
-        # คำนวณ determinant ของ Jacobian เชิงเส้น
-        manipularity = abs(np.linalg.det(J_linear))
+        # คำนวณ Jacobian จาก Robotic Toolbox
+        J_toolbox = robot.jacobe(q)
+        J_linear_toolbox = J_toolbox[:3, :]  # ตัดส่วน Linear (3x3)
+
+        # คำนวณ determinant ของทั้งสอง Jacobian
+        manipularity_manual = abs(np.linalg.det(J_linear_manual))
+        manipularity_toolbox = abs(np.linalg.det(J_linear_toolbox))
+
+        # คำนวณความแตกต่างระหว่างผลลัพธ์จากทั้งสอง
+        J_diff = J_linear_toolbox - J_linear_manual
+
+        # ตรวจสอบว่าอยู่ในสถานะ Singularity หรือไม่
         epsilon = 0.001
+        singularity_manual = manipularity_manual < epsilon
+        singularity_toolbox = manipularity_toolbox < epsilon
 
-        # ตรวจสอบค่า singularity
-        singularity = manipularity < epsilon
-        
         # แสดงผลลัพธ์
         print(f"Results for {name}:")
-        print(f"Jacobian Linear Part (3x3):\n{J_linear}")
-        print(f"Determinant: {manipularity}")
-        print(f"Singularity Status: {'Singularity Detected' if singularity else 'No Singularity'}")
+        print("\nManual Calculation:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear_manual}")
+        print(f"Determinant: {manipularity_manual}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity_manual else 'No Singularity'}")
+
+        print("\nRobotic Toolbox Calculation:")
+        print(f"Jacobian Linear Part (3x3):\n{J_linear_toolbox}")
+        print(f"Determinant: {manipularity_toolbox}")
+        print(f"Singularity Status: {'Singularity Detected' if singularity_toolbox else 'No Singularity'}")
+
+        print("\nDifference between Toolbox and Manual:")
+        print(J_diff)
         print("\n")
 
-    # Test qs1
+    # ทดสอบ Singularities สำหรับชุดมุมต่าง ๆ
     printSingularityResult(qs1, "qs1")
-    # Test qs2
     printSingularityResult(qs2, "qs2")
-    # Test qs3
     printSingularityResult(qs3, "qs3")
-    # Test qs4
     printSingularityResult(qs4, "qs4")
 
-# เรียกฟังก์ชันเพื่อเช็ค Singularities
+# เรียกฟังก์ชันเพื่อตรวจสอบ Singularities
 checkSingularity()
+
 ```
 ### **จะได้ผลลัพธ์**
 
 #### Results for qs1:
+
+#### Manual Calculation:
 #### Jacobian Linear Part (3x3):
 
 $$
 \[
 \begin{bmatrix}
-  1.63092362e-02 & -7.47610646e-18 & -2.33559107e-17 \\
- -1.00579509e-01 & -7.36555128e-02 & -4.74429999e-01 \\
-  4.20090740e-02 &  4.84383615e-02 & -9.30000031e-02
+1.63092362e-02 & -7.47610646e-18 & -2.33559107e-17 \\
+-1.00579509e-01 & -7.36555128e-02 & -4.74429999e-01 \\
+4.20090740e-02 & 4.84383615e-02 & -9.30000031e-02
 \end{bmatrix}
 \]
 $$
@@ -453,16 +471,47 @@ $$
 #### Determinant: 0.00048651388752052766  
 #### Singularity Status: Singularity Detected
 
-
-#### Results for qs2:
+#### Robotic Toolbox Calculation:
 #### Jacobian Linear Part (3x3):
 
 $$
 \[
 \begin{bmatrix}
-  8.85673870e-01 & -5.65866492e-17 & -2.62649613e-17 \\
- -3.21579522e-03 & -8.91253311e-01 & -4.74430016e-01 \\
- -1.08952552e-01 & -1.75965973e-01 & -9.30000019e-02
+0.01630924 & 0.00000000 & 0.00000000 \\
+-0.10057951 & -0.07365551 & -0.47443 \\
+0.04200907 & 0.04843836 & -0.093
+\end{bmatrix}
+\]
+$$
+
+####Determinant: 0.0004865138888846027  
+#### Singularity Status: Singularity Detected
+
+#### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+7.97972799e-17 & 7.47610646e-18 & 2.33559107e-17 \\
+1.45909992e-10 & 2.27564703e-10 & -1.30026162e-09 \\
+7.45823320e-10 & 5.70952723e-10 & 3.10985616e-09
+\end{bmatrix}
+\]
+$$
+
+---
+
+#### Results for qs2:
+
+#### Manual Calculation:
+#### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+8.85673870e-01 & -5.65866492e-17 & -2.62649613e-17 \\
+-3.21579522e-03 & -8.91253311e-01 & -4.74430016e-01 \\
+-1.08952552e-01 & -1.75965973e-01 & -9.30000019e-02
 \end{bmatrix}
 \]
 $$
@@ -470,16 +519,46 @@ $$
 #### Determinant: 0.0005287293674209878  
 #### Singularity Status: Singularity Detected
 
-
-#### Results for qs3:
+#### Robotic Toolbox Calculation:
 #### Jacobian Linear Part (3x3):
 
 $$
 \[
 \begin{bmatrix}
-  8.94905028e-01 & -4.38207280e-17 & -2.33558489e-17 \\
-  3.91667262e-02 & -8.91312897e-01 & -4.74430011e-01 \\
- -1.01720048e-01 & -1.75665999e-01 & -9.29999984e-02
+0.88567385 & -0.00000000 & 0.00000000 \\
+-0.0032158 & -0.89125328 & -0.47443 \\
+-0.10895255 & -0.17596597 & -0.093
+\end{bmatrix}
+\]
+$$
+
+#### Determinant: 0.0005287293084899891  
+#### Singularity Status: Singularity Detected
+
+#### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+-2.36743580e-08 & 5.65866492e-17 & 2.62649613e-17 \\
+6.43629204e-12 & 3.00508782e-08 & 1.60838307e-08 \\
+-4.45042739e-10 & 3.59153099e-09 & 1.89488747e-09
+\end{bmatrix}
+\]
+$$
+---
+
+#### Results for qs3:
+
+#### Manual Calculation:
+#### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+8.94905028e-01 & -4.38207280e-17 & -2.33558489e-17 \\
+3.91667262e-02 & -8.91312897e-01 & -4.74430011e-01 \\
+-1.01720048e-01 & -1.75665999e-01 & -9.29999984e-02
 \end{bmatrix}
 \]
 $$
@@ -487,15 +566,46 @@ $$
 #### Determinant: 0.0004019232076573776  
 #### Singularity Status: Singularity Detected
 
-#### Results for qs4:
+#### Robotic Toolbox Calculation:
 #### Jacobian Linear Part (3x3):
 
 $$
 \[
 \begin{bmatrix}
-  8.99430000e-01 & -4.93795981e-17 & -2.33558524e-17 \\
- -1.16822737e-16 & -8.99430000e-01 & -4.74430000e-01 \\
- -1.09000000e-01 & -9.30000000e-02 & -9.30000000e-02
+0.89490503 & -0.00000000 & 0.00000000 \\
+0.03916673 & -0.89131288 & -0.47443 \\
+-0.10172005 & -0.175666 & -0.093
+\end{bmatrix}
+\]
+$$
+
+
+#### Determinant: 0.00040192318994076645  
+#### Singularity Status: Singularity Detected
+
+#### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+-1.11022302e-16 & 4.38207280e-17 & 2.33558489e-17 \\
+-7.81986351e-11 & 2.10001000e-08 & 1.11740912e-08 \\
+2.54416412e-09 & -3.00710165e-09 & -1.61173239e-09
+\end{bmatrix}
+\]
+$$
+
+#### Results for qs4:
+
+#### Manual Calculation:
+#### Jacobian Linear Part (3x3):
+
+$$
+\[
+\begin{bmatrix}
+8.99430000e-01 & -4.93795981e-17 & -2.33558524e-17 \\
+-1.16822737e-16 & -8.99430000e-01 & -4.74430000e-01 \\
+-1.09000000e-01 & -9.30000000e-02 & -9.30000000e-02
 \end{bmatrix}
 \]
 $$
@@ -503,8 +613,35 @@ $$
 #### Determinant: 0.03554997075000001  
 #### Singularity Status: No Singularity
 
-จากผลลัพธ์ข้างต้น พบว่าหุ่นยนต์จะอยู่ในสถานะ Singularity เมื่อค่า determinant มีค่าน้อยกว่า 0.001 และจะไม่อยู่ในสถานะ Singularity หากค่า determinant มากกว่า 0.001
+#### Robotic Toolbox Calculation:
+#### Jacobian Linear Part (3x3):
 
+$$
+\[
+\begin{bmatrix}
+8.99430000e-01 & 0.00000000e+00 & 0.00000000e+00 \\
+-5.50742035e-17 & -8.99430000e-01 & -4.74430000e-01 \\
+-1.09000000e-01 & -9.30000000e-02 & -9.30000000e-02
+\end{bmatrix}
+\]
+$$
+
+#### Determinant: 0.03554997074999999  
+#### Singularity Status: No Singularity
+
+#### Difference between Toolbox and Manual:
+
+$$
+\[
+\begin{bmatrix}
+0.00000000e+00 & 4.93795981e-17 & 2.33558524e-17 \\
+6.17485337e-17 & 0.00000000e+00 & -5.55111512e-17 \\
+-5.55111512e-17 & -5.55111512e-17 & -2.77555756e-17
+\end{bmatrix}
+\]
+$$
+
+จากผลลัพธ์ข้างต้น พบว่าหุ่นยนต์จะอยู่ในสถานะ Singularity เมื่อค่า determinant มีค่าน้อยกว่า 0.001 และจะไม่อยู่ในสถานะ Singularity หากค่า determinant มากกว่า 0.001 และเมื่อเช็คจากการนำค่าที่คำนวณเองมาเปรียบเทียบกับค่าที่คำนวณจาก robotictoolbox ทำให้ด้ค่าออกมาเทีัยบเท่ากับ 0 
 
 ## ข้อที่ 3 Computed Effort
 
