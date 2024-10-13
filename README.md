@@ -32,19 +32,11 @@
 ## หมายเหตุ หากไม่สามารถลง robotictoolbox ใน window ได้ ให้ทำการลงบน ระบบปฏิบัติการ linux แทน
 
 **clone github**
-1.Clone the repository
+1.Clone the repository หรือ ทำการ Download zip บน github แล้วแตกไฟล์
  ```
 git clone https://github.com/muigims/FRA333_HW3_25_55.git
   ```
- ```
- cd FRA333_HW3-main/FRA333_HW3-main/FRA333_HW3_25_55
-  ```
-2. Create a Python Virtual Environment
-เพื่อให้การจัดการ dependencies แยกจากระบบหลัก ให้สร้างและเปิดใช้งาน Virtual Environment
- ```
-python -m venv env
-env\Scripts\activate
-  ```
+2.เปิดโปรแกรม Visual Studio Code แล้วทำการ open folder FRA333_HW3_25_55 (ที่อยู่ไฟล์ตามตำแหน่งที่เลือกมา)
 ---
 # **ทฤษฎีที่เกี่ยวข้อง**
 **1. Kinematics (จลนศาสตร์ของหุ่นยนต์)**
@@ -169,6 +161,8 @@ $$
 # **Implement code**
 จากไฟล์ `HW3_utils.py`  ที่ได้รับมา ทำให้ได้ค่า return ออกมา 4 ค่า ได้แก่ $R,p,R_e,P_e$
 เริ่มจากการนำตัวแปรที่ได้จากไฟล์ `HW3_utils.py` มาใส่ แล้วทำการสร้างตาราง MDH Parameters จาก roboticstoolbox
+![image](https://github.com/user-attachments/assets/76930ad5-9368-479a-b89a-e39e9e66a93c)
+
  ```
 d_1 = 0.0892
 a_2 = 0.425
