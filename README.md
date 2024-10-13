@@ -27,7 +27,7 @@
  pip install spatialmath-python
   ```
 6.ตรวจสอบว่าไฟล์ HW3_utils.py ,  FRA333_HW3_25_55.py  , testScript.py อยู่ในไดเรกทอรีเดียวกัน ก่อนรันโปรแกรม
-
+---
 **clone github**
 1.Clone the repository
  ```
@@ -42,6 +42,7 @@ git clone https://github.com/muigims/FRA333_HW3_25_55.git
 python -m venv env
 env\Scripts\activate
   ```
+---
 # **ทฤษฎีที่เกี่ยวข้อง**
 **1. Kinematics (จลนศาสตร์ของหุ่นยนต์)**
 Kinematics เป็นการศึกษาเกี่ยวกับการเคลื่อนที่ของหุ่นยนต์โดยไม่สนใจแรงที่กระทำ แต่เน้นที่การเคลื่อนที่ของข้อต่อและตำแหน่งของ end-effector (ส่วนปลายของหุ่นยนต์) เราสามารถแบ่งออกเป็น 2 ส่วนหลัก ๆ:
@@ -54,7 +55,6 @@ $$T_{0,n} = T_{0,1} \cdot T_{1,2} \cdot \dots \cdot T_{n-1,n}$$
 
 โดยที่:
 - `T(i, j)` คือเมทริกซ์การแปลง (Transformation Matrix) ระหว่างข้อต่อ \(i\) และ \(j\).
----
 
 **2. Jacobian Matrix (เมทริกซ์จาโคเบียน)**
 
@@ -112,7 +112,7 @@ $$
 - **τ** = เวกเตอร์แรงบิดที่ข้อต่อ  
 - **W** = แรงและทอร์กที่กระทำกับ end-effector  
 - **Jᵀ** = Transpose ของ Jacobian  
-
+---
 # **Implement code**
 
 เริ่มจากการนำตัวแปรที่ได้จากไฟล์ HW3_utils.py มาใส่ แล้วทำการสร้างตาราง MDH Parameters จาก roboticstoolbox
