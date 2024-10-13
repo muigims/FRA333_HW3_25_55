@@ -254,8 +254,8 @@ J = endEffectorJacobianHW3(q)
 print("Jacobian from manual calculation:")
 print(J)
 ```
-ทำให้ได้ผลลัพธ์ดังนี้
-`
+### **จะได้ผลลัพธ์**
+
 #### Jacobian from manual calculation:
 
 $$
@@ -271,7 +271,6 @@ J =
 \end{bmatrix}
 \]
 $$
-`
 
 ### **ตรวจคำตอบ**
  
