@@ -49,7 +49,16 @@ Kinematics เป็นการศึกษาเกี่ยวกับกา
 Forward Kinematics ใช้สำหรับหาตำแหน่งและการหมุนของ end-effector เมื่อทราบมุมของข้อต่อแต่ละข้อ การคำนวณนี้จำเป็นสำหรับการคาดการณ์ตำแหน่งที่หุ่นยนต์จะเคลื่อนไปเมื่อปรับมุมของข้อต่อ
 
 สมการทั่วไปของ FK:
+![image](https://github.com/user-attachments/assets/7f0b64c0-2743-43b9-a228-7a3ffcccbafa)
 
-\[
-\mathbf{T}_{0,n} = \mathbf{T}_{0,1} \cdot \mathbf{T}_{1,2} \cdot \ldots \cdot \mathbf{T}_{n-1,n}
-\]
+โดยที่:
+- `T(i, j)` คือเมทริกซ์การแปลง (Transformation Matrix) ระหว่างข้อต่อ \(i\) และ \(j\).
+
+---
+
+## 2. Jacobian Matrix (เมทริกซ์จาโคเบียน)
+Jacobian แสดงความสัมพันธ์ระหว่างความเร็วเชิงเส้นและความเร็วเชิงมุมของ end-effector กับความเร็วเชิงมุมของข้อต่อแต่ละข้อ:
+
+
+2. Jacobian Matrix (เมทริกซ์จาโคเบียน)
+
