@@ -113,7 +113,8 @@ $$
 - **W** = แรงและทอร์กที่กระทำกับ end-effector  
 - **Jᵀ** = Transpose ของ Jacobian  
 
-# ** Implement code**
+# **Implement code**
+
 เริ่มจากการนำตัวแปรที่ได้จากไฟล์ HW3_utils.py มาใส่ แล้วทำการสร้างตาราง MDH Parameters จาก roboticstoolbox
  ```
 d_1 = 0.0892
