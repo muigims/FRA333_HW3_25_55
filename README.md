@@ -200,7 +200,8 @@ print(J)
 
 ![image](https://github.com/user-attachments/assets/01bd340f-0cbe-43b2-af21-4df5c8be4bf8)
 
- **ตรวจคำตอบ**
+### **ตรวจคำตอบ**
+ 
  จากค่า J ที่ได้จาก endEffectorJacobianHW3(q) ใน FRA333_HW3_25_55.py
  ```
 def checkEndEffectorJacobianHW3(q):
@@ -256,8 +257,8 @@ print("Singularity :",checkSingularityHW3(q))
 
 ![image](https://github.com/user-attachments/assets/61a514f3-9f5a-4d97-8145-e8b1676b2835)
 
- **ตรวจคำตอบ**
- ในการตรวจคำตอบ ผู้จัดทำได้ทำการหาค่า q ที่จะทำให้แขนกลอยู่ในสถานะ Singularity ได้ 3 ค่าเพื่อทำการทดสอบ คือ qs1,qs2,qs3 และใส่ค่าเริ่มต้น คือ qs4 เพื่อทำการทดสอบ
+### **ตรวจคำตอบ**
+ในการตรวจคำตอบ ผู้จัดทำได้ทำการหาค่า q ที่จะทำให้แขนกลอยู่ในสถานะ Singularity ได้ 3 ค่าเพื่อทำการทดสอบ คือ qs1,qs2,qs3 และใส่ค่าเริ่มต้น คือ qs4 เพื่อทำการทดสอบ
  ```
 # Define the joint angles to test
 qs1 = [-1.91970470e-15, -8.35883143e-01, 2.80232546e+00]
@@ -329,7 +330,7 @@ print("Computed Effort (tau):", result)
 
 ![image](https://github.com/user-attachments/assets/492c8c2f-e7e5-4311-a908-3564c27eed64)
 
- **ตรวจคำตอบ**
+### **ตรวจคำตอบ**
  การตรวจคำตอบ ทำได้โดยการ นำค่า tau ที่ได้จากการคำนวณมาเปรียบเทียบกับค่า tau ที่ได้จาก robotictoolbox
 ```
 def checkComputeEffortHW3(q, w):
