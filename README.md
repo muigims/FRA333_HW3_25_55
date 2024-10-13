@@ -726,9 +726,9 @@ $$
 #### Difference in Effort (tau):
 
 $$
-\[
+\
 \begin{bmatrix}
  -1.11022302e-16 & 0.00000000e+00 & -4.44089210e-16
 \end{bmatrix}
-\]
+\
 $$
