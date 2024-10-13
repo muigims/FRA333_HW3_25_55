@@ -255,6 +255,24 @@ print("-----------------answer 1 -------------------")
 print("Jacobian from manual calculation:")
 print(J)
 ```
+ทำให้ได้ผลลัพธ์ดังนี้
+-----------------answer 1 -------------------
+
+### Jacobian from manual calculation:
+
+$$
+\[
+J = 
+\begin{bmatrix}
+8.9943 \times 10^{-1} & -4.9379 \times 10^{-17} & -2.3356 \times 10^{-17} \\
+-1.1682 \times 10^{-16} & -8.9943 \times 10^{-1} & -4.7443 \times 10^{-1} \\
+-1.0900 \times 10^{-1} & -9.3000 \times 10^{-2} & -9.3000 \times 10^{-2} \\
+1.2246 \times 10^{-16} & 1.0000 \times 10^{0} & 1.0000 \times 10^{0} \\
+1.0000 \times 10^{0} & -6.1232 \times 10^{-17} & -6.1232 \times 10^{-17} \\
+-6.1232 \times 10^{-17} & 6.1232 \times 10^{-17} & 6.1232 \times 10^{-17}
+\end{bmatrix}
+\]
+$$
 
 ![image](https://github.com/user-attachments/assets/01bd340f-0cbe-43b2-af21-4df5c8be4bf8)
 
@@ -332,6 +350,7 @@ qs2 = [-0.24866892, 0.22598268, -0.19647569]
 qs3 = [1.70275090e-17, -1.71791355e-01, -1.95756090e-01]
 qs4 = [0.0, 0.0, 0.0]
 ```
+
 ```
 def checkSingularity():
     print("-------------------check Singularity ----------------------")
