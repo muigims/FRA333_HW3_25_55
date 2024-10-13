@@ -251,14 +251,12 @@ def endEffectorJacobianHW3(q:list[float])->list[float]:
 #define q parameter
 q = np.array([0.0, 0.0, 0.0])
 J = endEffectorJacobianHW3(q)
-print("-----------------answer 1 -------------------")
 print("Jacobian from manual calculation:")
 print(J)
 ```
 ทำให้ได้ผลลัพธ์ดังนี้
------------------answer 1 -------------------
 
-### Jacobian from manual calculation:
+####Jacobian from manual calculation:
 
 $$
 \[
