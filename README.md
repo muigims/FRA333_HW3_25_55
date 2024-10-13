@@ -278,7 +278,6 @@ $$
 
  ```
 def checkEndEffectorJacobianHW3(q):
-    print("-------------------check Jacobian ----------------------")
     # Manual calculation using function from FRA333_HW3_25_55
     J_manual = endEffectorJacobianHW3(q)
 
@@ -297,8 +296,6 @@ def checkEndEffectorJacobianHW3(q):
 checkEndEffectorJacobianHW3(q_initial)
 ```
 ### **จะได้ผลลัพธ์**
-#### -----------------check Jacobian -------------------
-
 #### Jacobian from manual calculation (FRA333_HW3_25_55):
 
 $$
