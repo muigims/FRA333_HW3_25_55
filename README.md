@@ -164,7 +164,7 @@ robot = rtb.DHRobot(
 
 
 
-ข้อที่ 1 การคำนวณหา Jacobian
+## ข้อที่ 1 การคำนวณหา Jacobian
 ```
 def endEffectorJacobianHW3(q:list[float])->list[float]:
     # คำนวณ Forward Kinematics ด้วย FKHW3
@@ -199,7 +199,7 @@ print(J)
 
 ![image](https://github.com/user-attachments/assets/01bd340f-0cbe-43b2-af21-4df5c8be4bf8)
 
- # **ตรวจคำตอบ**
+ **ตรวจคำตอบ**
  จากค่า J ที่ได้จาก endEffectorJacobianHW3(q) ใน FRA333_HW3_25_55.py
  ```
 def checkEndEffectorJacobianHW3(q):
@@ -227,7 +227,7 @@ checkEndEffectorJacobianHW3(q_initial)
 
 เมื่อนำมาเปรียบเทียบกันโดยหาผลต่าง ทำให้ทราบว่า ค่าที่ได้จากการคำนวณเองและจาก robotictoolbox มีค่าเท่ากัน เนื่องจากผลจต่างมีค่าเท่ากับ 0 
 
-ข้อที่ 2 การหา Singularity
+## ข้อที่ 2 การหา Singularity
 เนื่องจาก การจะเกิด Singularity ต้องมีค่า det อยู่ในช่วง มากกว่า 0 แต่น้อยกว่า 0.001 ตามโจทย์
 ```
 def checkSingularityHW3(q: list[float]) -> bool:
@@ -255,7 +255,7 @@ print("Singularity :",checkSingularityHW3(q))
 
 ![image](https://github.com/user-attachments/assets/61a514f3-9f5a-4d97-8145-e8b1676b2835)
 
- # **ตรวจคำตอบ**
+ **ตรวจคำตอบ**
  ในการตรวจคำตอบ ผู้จัดทำได้ทำการหาค่า q ที่จะทำให้แขนกลอยู่ในสถานะ Singularity ได้ 3 ค่าเพื่อทำการทดสอบ คือ qs1,qs2,qs3 และใส่ค่าเริ่มต้น คือ qs4 เพื่อทำการทดสอบ
  ```
 # Define the joint angles to test
@@ -306,7 +306,7 @@ checkSingularity()
 
 ![image](https://github.com/user-attachments/assets/135f77db-41d2-48c9-8285-34534f4391f4)
 
-ข้อที่ 3 Computed Effort
+## ข้อที่ 3 Computed Effort
 ```
 def computeEffortHW3(q: list[float], w: list[float]) -> list[float]:
     # คำนวณ Jacobian
@@ -328,7 +328,7 @@ print("Computed Effort (tau):", result)
 
 ![image](https://github.com/user-attachments/assets/492c8c2f-e7e5-4311-a908-3564c27eed64)
 
- # **ตรวจคำตอบ**
+ **ตรวจคำตอบ**
  การตรวจคำตอบ ทำได้โดยการ นำค่า tau ที่ได้จากการคำนวณมาเปรียบเทียบกับค่า tau ที่ได้จาก robotictoolbox
 ```
 def checkComputeEffortHW3(q, w):
