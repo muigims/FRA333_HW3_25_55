@@ -29,4 +29,6 @@
 6.ตรวจสอบว่าไฟล์ HW3_utils.py ,  FRA333_HW3_25_55.py  , testScript.py อยู่ในไดเรกทอรีเดียวกัน ก่อนรันโปรแกรม
 
 # **clone github**
-
+'''
+https://github.com/muigims/FRA333_HW3_25_55.git
+'''
